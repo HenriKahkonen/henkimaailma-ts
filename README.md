@@ -23,11 +23,21 @@ The project requires React and some dependencies to run. To install:
 ```
 # Linux
 
-# Install Node.js and npm
-sudo apt install nodejs && install npm
+# Install npm
+sudo apt install install npm
 
 # Verify installation was succesful
 npm -v
+
+# Install Node.js
+# Install nvm to ensure latest version of Node.js
+sudo apt remove nodejs npm   # remove the old apt version, avoid conflicts
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+nvm use --lts
+
+# Verify Node.js version is sensible
 node -v
 
 # Install dependencies
