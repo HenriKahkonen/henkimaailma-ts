@@ -15,7 +15,7 @@ When pushed to main, the project automatically deploys to and is published in Ne
 To start the website locally, run:
 
 ```
-npm run start
+npm run dev
 ```
 
 The project requires React and some dependencies to run. To install:
