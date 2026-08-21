@@ -5,6 +5,7 @@ import './App.css'
 
 /* Page imports */
 import Homepage from './pages/Homepage/Homepage.tsx'
+import Error404page from './pages/Errorpages/Error404page.tsx'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children : [
       { index: true, element: <Homepage /> },
+      { path: "*", element: <Error404page />,},
     ],
   },
 ]);
