@@ -85,6 +85,45 @@
   padding:10px;
 }
 
+/* Portfolio page */
+
+.portfolio-field {
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  gap:20px;
+  /*align-items: flex-end;*/
+}
+
+.portfolio-field h2 {
+  align-self:flex-start;
+}
+.portfolio-item {
+  background-color: rgb(233, 233, 225);
+  width: 85%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 40px;
+
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+
+  font-size: small;
+}
+
+.portfolio-item b {
+  font-size: medium;
+}
+
+.portfolio-item li {
+  line-height: 16px;
+}
+
+.portfolio-item p {
+  margin-left: 20px;
+}
+
 /*Meta page*/
 
 .contact-info-box {
@@ -97,7 +136,7 @@
   padding-top:10px;
   padding-left: 30px;
   padding-right: 30px;
-  background-color:rgb(235, 235, 222);
+  background-color: rgb(233, 233, 225);
   border-radius: 10px; /* Edge rounding*/
   border-color: black;
   border-style: solid;

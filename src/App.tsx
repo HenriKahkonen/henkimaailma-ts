@@ -11,6 +11,7 @@ import './App.css'
 import Homepage from './pages/Homepage/Homepage'
 import Metapage from './pages/Metapage/Metapage'
 import Error404page from './pages/Errorpages/Error404page.tsx'
+import Portfoliopage from './pages/Portfoliopage/Portfoliopage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,9 @@ const router = createBrowserRouter([
       { index: true, element: <Homepage /> },
       { path: "/meta", element: 
           <Metapage />
+      },
+      { path: "/portfolio", element:
+          <Portfoliopage />
       },
       { path: "*", element: <Error404page />,},
     ],
