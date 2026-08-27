@@ -1,10 +1,15 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+/* Context imports */
 import { LanguageProvider } from './assets/LanguageContext'
+import { ChangelogProvider } from './assets/ChangelogContext.tsx'
+
 import Layout from './assets/Layout.tsx'
 import './App.css'
 
 /* Page imports */
-import Homepage from './pages/Homepage/Homepage.tsx'
+import Homepage from './pages/Homepage/Homepage'
+import Metapage from './pages/Metapage/Metapage'
 import Error404page from './pages/Errorpages/Error404page.tsx'
 
 const router = createBrowserRouter([
@@ -13,6 +18,9 @@ const router = createBrowserRouter([
     element: <Layout />,
     children : [
       { index: true, element: <Homepage /> },
+      { path: "/meta", element: 
+          <Metapage />
+      },
       { path: "*", element: <Error404page />,},
     ],
   },
@@ -21,9 +29,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <LanguageProvider>
-        <RouterProvider router={router} />
-      </LanguageProvider>
+      <ChangelogProvider>
+        <LanguageProvider>
+          <RouterProvider router={router} />
+        </LanguageProvider>
+      </ChangelogProvider>
   );
 }
 
