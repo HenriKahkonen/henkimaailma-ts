@@ -20,18 +20,18 @@ function Layout() {
                         {/*<NavBarLink linklang={{fi:"/sivukartta",en:"/sitemap"}} linkText={{fi:"Sivukartta",en:"Site map"}} />*/}
                         <NavBarLink link="/portfolio" linkText={{fi:"Portfolio",en:"Portfolio"}}/>
                         <NavBarLink linklang={{fi:"/arviot",en:"/reviews"}} linkText={{fi:"Arviot",en:"Reviews"}}/>
-                        <NavBarLink linklang={{fi:"/tekstit",en:"/articles"}} linkText={{fi:"Tekstit",en:"Articles"}}/>
+                        <NavBarLink linklang={{fi:"/kirjoituksia",en:"/articles"}} linkText={{fi:"Kirjoituksia",en:"Articles"}}/>
                         <NavBarLink linklang={{fi:"/musiikki",en:"/music"}} linkText={{fi:"Musiikki",en:"Music"}}/>
                         <NavBarLink link="/sns" linkText={{fi:"Ääniefektit",en:"Sound effects"}}/>
                         <NavBarLink linklang={{fi:"/muuta",en:"/other"}} linkText={{fi:"Kaikkea muuta",en:"Other stuff"}}/>
-                        <NavBarLink link="/blog" linkText={{fi:"Blogi",en:"Blog"}}/>
+                        {/*<NavBarLink link="/blog" linkText={{fi:"Blogi",en:"Blog"}}/>*/}
                         <NavBarLink link="/meta" linkText={{fi:"Meta",en:"Meta"}}/>
                     </div>
                 </nav>
             </div>
 
             <div className="page-chunk">
-                <main className="page-content">
+                <main className="page-content" style={{position: 'relative'}}>
                     <Outlet />
                 </main>
                 <div className="site-footer">

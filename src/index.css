@@ -2,10 +2,10 @@
   --content_width: 70vw; /*Content box, header, footer*/
   --content_width_mobile: 90vw;
   --bg_color: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(255,255,255,1) 100%, rgba(0,212,255,1) 100%);
-
+  
   --borders: 2vh;
   --shadow: 0px 0px 80px #080808;
-  --smallshadow: 0px 0px 30px rgba(0,0,0,0.05);
+  --smallshadow: 10px 10px 30px #08080886;
 
   --shadow_gap: 0px 65px #08080886;
   --gap: 16px;
@@ -89,6 +89,8 @@
   text-align: center;
   min-height: 100svh;
   box-sizing: border-box;
+
+  font-size: medium;
 }
 
 body {
