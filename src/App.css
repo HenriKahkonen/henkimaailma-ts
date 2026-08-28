@@ -66,6 +66,12 @@
   padding:10px;
   padding-top:5px;
   justify-content: space-evenly;
+  gap: 3px;
+}
+
+.navbarlink {
+  flex-grow: 4;
+  
 }
 
 .lang-select {
