@@ -1,5 +1,5 @@
 import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
-import { useChangelog, type ChangelogEntry, type ChangelogTranslation } from "../../assets/ChangelogContext.tsx";
+import { useChangelog, type ChangelogEntry, type ChangelogTranslation } from "../../api/useChangelog.ts"
 import { content } from "./Metapage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 
@@ -12,10 +12,9 @@ import ReactMarkdown from "react-markdown";
 
 function Metapage() {
     const { language } = useLanguage();
-    const { changelogdata } = useChangelog();
+    const { data, loading, error } = useChangelog();
     const text = content[language];
 
-    console.log(changelogdata)
 
     return (
         <AnimatePresence mode="wait">
@@ -39,7 +38,7 @@ function Metapage() {
                 </div>
 
                 <h1>{text.changelog_heading}</h1>
-                    {changelogdata?.map((entry) => (
+                    {data?.map((entry) => (
                         <React.Fragment key = {"Changelog-"+entry.id.toString()}>
                             {renderChangelogEntry({entry},language)}
                         </React.Fragment>

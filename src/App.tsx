@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, type RouteObject } from 'react-rou
 
 /* Context imports */
 import { LanguageProvider } from './assets/LanguageContext'
-import { ChangelogProvider } from './assets/ChangelogContext.tsx'
 
 import Layout from './assets/Layout.tsx'
 import './App.css'
@@ -87,11 +86,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <ChangelogProvider>
         <LanguageProvider>
           <RouterProvider router={router} />
         </LanguageProvider>
-      </ChangelogProvider>
   );
 }
 
