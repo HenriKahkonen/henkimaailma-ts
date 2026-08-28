@@ -23,7 +23,7 @@ function Layout() {
                         <NavBarLink linklang={{fi:"/kirjoituksia",en:"/articles"}} linkText={{fi:"Kirjoituksia",en:"Articles"}}/>
                         <NavBarLink linklang={{fi:"/musiikki",en:"/music"}} linkText={{fi:"Musiikki",en:"Music"}}/>
                         <NavBarLink link="/sns" linkText={{fi:"Ääniefektit",en:"Sound effects"}}/>
-                        <NavBarLink linklang={{fi:"/muuta",en:"/other"}} linkText={{fi:"Kaikkea muuta",en:"Other stuff"}}/>
+                        {/*<NavBarLink linklang={{fi:"/muuta",en:"/other"}} linkText={{fi:"Kaikkea muuta",en:"Other stuff"}}/>*/}
                         {/*<NavBarLink link="/blog" linkText={{fi:"Blogi",en:"Blog"}}/>*/}
                         <NavBarLink link="/meta" linkText={{fi:"Meta",en:"Meta"}}/>
                     </div>
@@ -76,16 +76,18 @@ function NavBarLink( { link, linklang, linkText }: NavBarLinkProps ) {
     const linktarget = link ?? linklang[language]
     /*If not linklang */
     return (
-        <div className="NavBarLink">
-            <NavLink 
+        <NavLink 
                 to={linktarget} 
                 className={({isActive, isPending}) => 
                     isActive ? "active" : isPending ? "pending" : ""
                 }
             >
+        <div className="navbarlink">
+
                 <span>{linkText[language]}</span>
-            </NavLink>
         </div>
+        </NavLink>
+
     );
     /* if linklank point to different places depending on lang context */
 }
