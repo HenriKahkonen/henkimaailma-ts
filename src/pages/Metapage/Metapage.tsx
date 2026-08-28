@@ -1,0 +1,101 @@
+import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
+import { useChangelog, type ChangelogEntry, type ChangelogTranslation } from "../../assets/ChangelogContext.tsx";
+import { content } from "./Metapage.content.ts"
+import {motion, AnimatePresence} from 'framer-motion';
+
+import { SOCIAL_LINKS } from "./Metapage.content.ts";
+import { type SocialMediaLink } from "./Metapage.content.ts";
+
+import React from "react";
+import ReactMarkdown from "react-markdown";
+
+
+function Metapage() {
+    const { language } = useLanguage();
+    const { changelogdata } = useChangelog();
+    const text = content[language];
+
+    console.log(changelogdata)
+
+    return (
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={location.pathname}
+                initial={{ opacity:0 }}
+                animate={{ opacity:1 }}
+                exit={{ opacity:0 }}
+                transition={{ duration: 0.4, ease: 'easeInOut'}}
+            >
+                <div className="contact-info-box">
+                    <h2>{text.contact}</h2>
+                    <p>{text.contact_body}</p>
+                    <div className="contact-links-box">
+                        {SOCIAL_LINKS.map((some) => (
+                            <React.Fragment key={some.socialName}>
+                                {renderSocialLink(some)}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
+
+                <h1>{text.changelog_heading}</h1>
+                    {changelogdata?.map((entry) => (
+                        <React.Fragment key = {"Changelog-"+entry.id.toString()}>
+                            {renderChangelogEntry({entry},language)}
+                        </React.Fragment>
+                    ))}
+            </motion.div>
+        </AnimatePresence>
+    );
+}
+
+/* Social link rendering */
+
+function renderSocialLink(link: SocialMediaLink) {
+  const innercontent = (
+    <>
+      <img src={link.svg} alt={link.socialName} /> {link.socialName} : {link.linktext}
+    </>
+  );
+
+  if (link.link === null) {
+    return <p key={link.socialName}>{innercontent}</p>
+  } else {
+    return (
+        <a href={link.link}>
+            <p key={link.socialName}>
+                {innercontent}
+            </p>
+        </a>
+    )
+    }
+}
+
+/* Changelog rendering */
+
+function getTranslation(
+    entry: ChangelogEntry,
+    language: Language)
+    : ChangelogTranslation | undefined {
+  return (
+    entry.translations.find((t) => t.language === language) ??
+    entry.translations[0]
+  );
+}
+
+function renderChangelogEntry({ entry }: {entry: ChangelogEntry}, lang: Language) {
+    const translation = getTranslation(entry, lang);
+
+    if (!translation) return null;
+
+    return (
+        <article>
+            <h2>{translation.translated_title}</h2>
+            <time dateTime={entry.date}>{entry.date}</time>
+            <ReactMarkdown>{translation.body_markdown}</ReactMarkdown>
+        </article>
+    )
+}
+
+export default Metapage;
+
