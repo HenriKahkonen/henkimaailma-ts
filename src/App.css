@@ -54,6 +54,12 @@
   text-align: right;
 }
 
+.language-warning {
+  color:rgb(204, 36, 36);
+  font-size: small;
+  line-height: 120%;
+}
+
 .navlinks {
   display: flex;
   flex-direction: row;

@@ -99,6 +99,7 @@ body {
   background-size:30%;background-repeat: repeat;background-position: center;background-attachment: fixed;
 }
 
+
 h1,
 h2 {
   font-family: var(--heading);
@@ -125,7 +126,7 @@ h2 {
   }
 }
 p {
-  margin: 0;
+  margin-bottom: 1,5em;
 }
 
 code,

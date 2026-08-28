@@ -1,6 +1,7 @@
 import { useLanguage } from "../../assets/LanguageContext.tsx"
 import { content } from "./Homepage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
+import ReactMarkdown from "react-markdown";
 
 function Homepage() {
   const { language } = useLanguage();
@@ -16,9 +17,14 @@ function Homepage() {
         transition={{ duration: 0.4, ease: 'easeInOut'}}
       >
         <div className="homepage">
+
           <h1>{text.heading}</h1>
-          <p>{text.intro}</p>
-          <p>{text.body}</p>
+          <ReactMarkdown>{text.intro}</ReactMarkdown>
+          <ReactMarkdown>{text.par1}</ReactMarkdown>
+          <ReactMarkdown>{text.par2}</ReactMarkdown>
+          <ReactMarkdown>{text.finalPar}</ReactMarkdown>
+          <div className="language-warning"><ReactMarkdown>{text.langWarning}</ReactMarkdown></div>
+
         </div>
       </motion.div>
     </AnimatePresence>
