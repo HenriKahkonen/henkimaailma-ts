@@ -32,6 +32,8 @@ export interface SocialMediaLink {
     linktext : string,
 }
 
+/* SVGs are part of Arcticons collection https://opensvg.dev/icons/arcticons */
+/*TODO: credit the makers of icons in meta page */
 export const SOCIAL_LINKS: SocialMediaLink[] = [
     { socialName : "eMail", svg: emailSvg, link: null, linktext: "henkonenvideo (AT) gmail (DOT) com" },
     { socialName : "YouTube", svg: youtubeSvg, link: "https://www.youtube.com/@henkonen", linktext: "@HenKonen" },
