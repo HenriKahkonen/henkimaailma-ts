@@ -14,12 +14,6 @@ import heart_clicked from "../../assets/svg/heart_full.svg"
 import fullStar from "../../assets/svg/star.svg"
 import halfStar from "../../assets/svg/halfstar.svg"
 
-
-/*
-import React from "react";
-import ReactMarkdown from "react-markdown";
-*/
-
 function ReviewsListPage() {
     const { language } = useLanguage();
     const [page, setPage] = useState(0);
@@ -140,13 +134,12 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                     </div>
                     <div className="card-right-corner">
                         <div className="card-rating-box">
-                            {/*<span>(Click to show rating)</span>*/}
                             {ReviewRating({review, lang})}
                         </div>
-                        <div className="card-likebox">
+                        {/*<div className="card-likebox">
                             <span>{review.likes}</span>
-                            <img src={heart_unclicked} alt="Click to like" />
-                        </div>
+                            <img src={heart_unclicked} alt="Click to like"/>
+                        </div>*/}
                     </div>
                 </div>
 
@@ -193,9 +186,6 @@ function ReviewRating({review, lang}: ReviewCardProps) {
             )}
         </div>
         </button>
-        /* Return fillstars times image of full star and half_star if rating ends in half star*/
-        /* full star <img src=fullStar/>*/
-        /* half star <img src=halfStar/>*/
     )
 }
 
