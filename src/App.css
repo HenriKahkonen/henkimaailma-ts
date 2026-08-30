@@ -354,10 +354,10 @@
 
 /*Meta page*/
 
-.contact-info-box {
+.meta-info-box {
   float: right;
   width: max-content;
-  max-width:50%;
+  max-width:35%;
   margin-top:0px;
   margin-left:16px;
   margin-bottom:16px;
@@ -390,3 +390,30 @@
   margin-left:auto;
   margin-right:auto;
 }
+
+.cc-by-sa-icons-disclaimer {
+  margin-top: 30px;
+  padding-top: 10px;
+  border: 1px black;
+  border-style: solid none none none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-bottom: 30px;
+}
+
+.cc-by-sa-icons-disclaimer {
+  font-size:small;
+}
+
+.svg-icons-showcase {
+  margin-top:30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.svg-icons-showcase img {
+  width: 30px;
+}
+

@@ -3,7 +3,8 @@ import { useChangelog, type ChangelogEntry, type ChangelogTranslation } from "..
 import { content } from "./Metapage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 
-import { SOCIAL_LINKS } from "./Metapage.content.ts";
+import { SOCIAL_LINKS, CC_BY_Svgs, type CC_BY_SA_Author } from "./Metapage.content.ts";
+
 import { type SocialMediaLink } from "./Metapage.content.ts";
 
 import React from "react";
@@ -25,13 +26,21 @@ function Metapage() {
                 exit={{ opacity:0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut'}}
             >
-                <div className="contact-info-box">
+                <div className="meta-info-box">
                     <h2>{text.contact}</h2>
                     <p>{text.contact_body}</p>
                     <div className="contact-links-box">
                         {SOCIAL_LINKS.map((some) => (
                             <React.Fragment key={some.socialName}>
                                 {renderSocialLink(some)}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                    <div className="cc-by-sa-icons-disclaimer">
+                        <h3>{text.ccbysa_disclaimer}</h3>
+                        {CC_BY_Svgs.map((author) => (
+                            <React.Fragment key={author.author}>
+                                {renderSvgIconsList({author, language})}
                             </React.Fragment>
                         ))}
                     </div>
@@ -68,6 +77,34 @@ function renderSocialLink(link: SocialMediaLink) {
         </a>
     )
     }
+};
+
+/* CC_BY_SA Svg icon disclaimer rendering */ 
+
+interface SvgIconsParams {
+    author: CC_BY_SA_Author;
+    language: Language;
+}
+
+function renderSvgIconsList({author,language}: SvgIconsParams) {
+    const text = content[language]
+    return (
+        <div>
+            <div className="svg-icons-showcase">
+                {author.icons.map(
+                    (icon) => (
+                        <img 
+                            src={icon.icon} 
+                            title={icon.name}
+                            alt={icon.name}
+                        />
+                    )
+                )}
+            </div>
+            <div>{text.ccbysa_authorship_string}{author.author}</div>
+
+        </div>
+    )
 }
 
 /* Changelog rendering */
