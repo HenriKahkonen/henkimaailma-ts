@@ -156,6 +156,13 @@ function ReviewRating({review, lang}: ReviewCardProps) {
 
     const rating_no = Number(review.extras?.["rating"]);
 
+    const VALID_RATINGS = [0,1,2,3,4,5,6,7,8,9,10];
+    if (Number.isSafeInteger(rating_no) && !VALID_RATINGS.includes(rating_no)) {
+        const title = review.title
+        console.log(`Warning: review "${title}" rating is invalid (${rating_no}). Not displaying rating.`)  
+        return null
+    }
+
 
     if (rating_no === undefined || Number.isNaN(rating_no)) {
         return null
