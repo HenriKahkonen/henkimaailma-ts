@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useReviews, type Review, type ReviewTranslation } from "../../api/useReviews.ts";
+import { useReviews, type Review, type ReviewsResponse, type ReviewTranslation } from "../../api/useReviews.ts";
 import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
 import { content, getCategoryTranslation } from "./reviewslistpage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
@@ -71,7 +71,7 @@ function ReviewsListPage() {
                             key={r.slug} 
                             review={r} 
                             lang={language} />)}
-                        <ReviewpagePaginationNavigation pages={data?.total_reviews} />
+                        <ReviewpagePaginationNavigation data={data} pagechanger={setPage} language={language}/>
                     </div>
 
             </motion.div>
@@ -171,9 +171,6 @@ function ReviewRating({review, lang}: ReviewCardProps) {
     const fullStars = Math.floor(rating_no / 2)
     const hasHalfStar = rating_no % 2 >= 1;
 
-    console.log(review.title)
-    console.log(rating_no)
-
     return (
         <button
             type="button"
@@ -269,19 +266,33 @@ function getTranslationMissingWarning({lang, translationFound}:TranslationMissin
     }
 }
 
-
-interface ReviewPagePaginationNavigationProps {
-    pages? : number | undefined;
+interface ReviewPagePaginationProps {
+    data: { review_pages: number } | null | undefined;
+    pagechanger: (page: number) => void;
+    language: Language;
 }
 
-function ReviewpagePaginationNavigation({ pages }: ReviewPagePaginationNavigationProps) {
-    if (pages == null) {
+function ReviewpagePaginationNavigation({data, pagechanger, language}:ReviewPagePaginationProps) {
+    const text = content[language]
+
+    if (data == null) {
         /* reason to throw err? */
         return null;
     }
+
     return (
         <div className="paginated-navigation">
-            <p>{pages?.toString()}</p>
+            <div>{text.page}</div>
+            <div>
+                {Array.from({ length: data.review_pages }, (_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => pagechanger(i)}
+                    >
+                        {(i + 1).toString()}
+                    </button>
+                ))}
+            </div>
         </div>
     )
 }

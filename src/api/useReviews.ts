@@ -28,6 +28,7 @@ export interface Review {
 
 export interface ReviewsResponse {
   total_reviews: number;
+  review_pages: number;
   reviews: Review[];
 }
 

@@ -8,6 +8,7 @@ interface ReviewsPageContent {
     langWarning?: string;
     translation_missing?: string;
     show_rating: string;
+    page: string;
 }
 export const content: Record<Language, ReviewsPageContent> = {
     fi: {
@@ -15,13 +16,15 @@ export const content: Record<Language, ReviewsPageContent> = {
         intro: "Kirjoittamiani arvioita eri muodoissa",
         loading: "Ladataan arvioita...",
         show_rating: "(Näytä arvosana)",
+        page: "Sivu:",
     },
     en: {
         reviews_heading: "Reviews",
         intro: "Reviews I've written in different formats",
         loading: "Loading reviews...",
         translation_missing: "There isn't a translation in your language for this review.",
-        show_rating: "(Show rating)"
+        show_rating: "(Show rating)",
+        page:"Page:",
       },
 };
 
