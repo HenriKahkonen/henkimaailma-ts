@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, type RouteObject } from 'react-rou
 
 /* Context imports */
 import { LanguageProvider } from './assets/LanguageContext'
-import { ChangelogProvider } from './assets/ChangelogContext.tsx'
 
 import Layout from './assets/Layout.tsx'
 import './App.css'
@@ -14,6 +13,7 @@ import Error404page from './pages/Errorpages/Error404page.tsx'
 import Portfoliopage from './pages/Portfoliopage/Portfoliopage.tsx'
 /*import Otherstuffpage from './pages/Otherstuffpage/otherstuffpage.tsx'*/
 import Underconstructionpage from './pages/Underconstructionpage/underconstructionpage.tsx'
+import ReviewsListPage from './pages/Reviewspage/reviewslistpage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +23,9 @@ const router = createBrowserRouter([
 
       /* Homepage */
       { index: true, element: <Homepage /> },
+      { path: "/etusivu", element: <Homepage />},
+      { path: "/home", element: <Homepage />},
+
 
       /* Portfolio page */
       { path: "/portfolio", element:
@@ -38,11 +41,11 @@ const router = createBrowserRouter([
       /* Reviews */
       {
         path: "/arviot", element:
-          <Underconstructionpage heading="Arviot" />
+          <ReviewsListPage />
       },
       {
         path: "/reviews", element:
-          <Underconstructionpage heading="Reviews" />
+          <ReviewsListPage />
       },      
 
       /* Articles */
@@ -87,11 +90,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <ChangelogProvider>
         <LanguageProvider>
           <RouterProvider router={router} />
         </LanguageProvider>
-      </ChangelogProvider>
   );
 }
 
