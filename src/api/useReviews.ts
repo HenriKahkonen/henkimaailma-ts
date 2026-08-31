@@ -16,6 +16,7 @@ export interface Review {
   type: "A" | "E" | "V"; /* Article, External article or Video */
   slug: string;
   category: string;
+  rating?: number;
   published_date: string;
   tags: { name: string }[]; /* Maybe fix this at backend side to only return strings instead of being nested inside a dict */
   likes: number;
