@@ -49,17 +49,13 @@ const router = createBrowserRouter([
               {path: ":slug", element: <ReviewArticlePage reviewType="V"/>},
             ],
           },
-          { path: "external", 
+          { path: "ulkoinen", 
             children: [
               {path: ":slug", element: <ReviewArticlePage reviewType="E"/>},
             ],
           },
-          { path: "article", 
-            children: [
-              {path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
-            ],
-          },
-        ]
+          { path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
+          ],
       },
       {
         path: "/reviews",        
@@ -75,14 +71,10 @@ const router = createBrowserRouter([
               {path: ":slug", element: <ReviewArticlePage reviewType="E"/>},
             ],
           },
-          { path: "article", 
-            children: [
-              {path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
-            ],
-          },
-        ]
-      },      
-
+          { path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
+          ],
+        },
+   
       /* Articles */
       {
         path: "/kirjoituksia", element:

@@ -90,7 +90,7 @@ interface ReviewCardProps {
 function ReviewCard({ review, lang }: ReviewCardProps) {
 
     const image = review.type === "V" ? getYouTubeThumbnail(review.ytid!) : review.imgUrl;
-    const link = getReviewLink(review)
+    const link = getReviewLink({review,lang})
     const icon = review.type === "V" ? youtubeSvg : review.type === "A" ? articleSvg : externalLinkSvg
     
     const {title, desc, translationFound} = getReviewTranslation({review, lang});
@@ -148,7 +148,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
     )
 }
  
-function ReviewRating({review, lang}: ReviewCardProps) {
+export function ReviewRating({review, lang}: ReviewCardProps) {
 
     const text = content[lang]
 
@@ -197,7 +197,7 @@ function getYouTubeThumbnail(ytid:string) {
     return "https://img.youtube.com/vi/"+ytid+"/maxresdefault.jpg"
 }
 
-function getYouTubeVideoLink(ytid:string) {
+export function getYouTubeVideoLink(ytid:string) {
     return "https://youtu.be/"+ytid
 }
 
@@ -206,7 +206,7 @@ interface ReviewDescProps {
     lang: Language;
 }
 
-function displayReviewTags({review, lang}:ReviewDescProps) {
+export function displayReviewTags({review, lang}:ReviewDescProps) {
     const tags = review.tags
     const category = review.category
     return (
@@ -219,15 +219,32 @@ function displayReviewTags({review, lang}:ReviewDescProps) {
     )
 }
 
-function getReviewLink(review:Review) {
-    if (review.e_url!==undefined) {
+function getReviewLink({review, lang}:ReviewDescProps) {
+    if (review.type==="E" && review.e_url!==undefined) {
         return review.e_url
     }
     else if (review.type==="V") {
         return getYouTubeVideoLink(review.ytid!)
     }
 
-    return "/etusivu" /* placeholder */
+    const REVIEW_PAGE_LINKS = {
+        fi: {
+            V: "/arviot/video/",
+            E: "/arviot/ulkoinen/",
+            A: "/arviot/"
+        },
+        en: {
+            V: "/reviews/video/",
+            E: "/reviews/external/",
+            A: "/reviews/"
+        }
+
+    }
+
+    const reviewpageroot = REVIEW_PAGE_LINKS[lang][review.type]
+    const url = reviewpageroot+review.slug
+
+    return url
 }
 
 
