@@ -353,7 +353,94 @@
 }
 
 
+/* Article page, reused for articles and reviews */
+.article-page {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:80%;
+  margin: auto;
+}
 
+.article-header-image { /* Article main image */
+  height: 600px;
+  display:flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom:60px;
+}
+
+.article-header-image {
+  height:max-content;
+}
+
+.article-ingress {
+  justify-content: center;
+  text-align: center;
+  font-size: xx-large;
+  line-height: 40px;
+  font-style: italic;
+  margin-bottom: 60px;
+}
+
+.article-metadata {
+  width: 70%;
+}
+
+.article-page-tags {
+  display:flex;
+  gap: 5px;
+  font-size:small;
+}
+
+.article-page-tags span {
+  border: 1px solid rgba(0, 0, 0, 0.527);
+  padding: 2px;
+  border-radius: 4px;
+  font-style: italic;
+  line-height: 1;
+  background-color: rgba(219, 217, 190, 0.466);
+}
+
+.article-page-tag-category {
+  margin-right: 20px;
+}
+
+.article-prose {
+  width: 70%;
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
+.article-prose p {
+
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.large-review-score {
+  margin-top: 40px;
+  display:flex;
+  justify-content: center;
+}
+.large-review-score img {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 60px;
+}
+
+.article-page-likes-box {
+  margin-top: 60px;
+  display:flex;
+  gap: 5px;
+  align-items:center;
+  align-self:flex-start;
+}
+
+.article-page-likes-box img {
+  height:20px;
+}
 
 
 /*Meta page*/

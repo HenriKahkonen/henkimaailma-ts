@@ -14,6 +14,7 @@ import Portfoliopage from './pages/Portfoliopage/Portfoliopage.tsx'
 /*import Otherstuffpage from './pages/Otherstuffpage/otherstuffpage.tsx'*/
 import Underconstructionpage from './pages/Underconstructionpage/underconstructionpage.tsx'
 import ReviewsListPage from './pages/Reviewspage/reviewslistpage.tsx'
+import ReviewArticlePage from './pages/Reviewspage/reviewItemPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -40,12 +41,46 @@ const router = createBrowserRouter([
 
       /* Reviews */
       {
-        path: "/arviot", element:
-          <ReviewsListPage />
+        path: "/arviot",
+        children: [
+          {index: true, element: <ReviewsListPage />},
+          { path: "video", 
+            children: [
+              {path: ":slug", element: <ReviewArticlePage reviewType="V"/>},
+            ],
+          },
+          { path: "external", 
+            children: [
+              {path: ":slug", element: <ReviewArticlePage reviewType="E"/>},
+            ],
+          },
+          { path: "article", 
+            children: [
+              {path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
+            ],
+          },
+        ]
       },
       {
-        path: "/reviews", element:
-          <ReviewsListPage />
+        path: "/reviews",        
+        children: [
+          {index: true, element: <ReviewsListPage />},
+          { path: "video", 
+            children: [
+              {path: ":slug", element: <ReviewArticlePage reviewType="V"/>},
+            ],
+          },
+          { path: "external", 
+            children: [
+              {path: ":slug", element: <ReviewArticlePage reviewType="E"/>},
+            ],
+          },
+          { path: "article", 
+            children: [
+              {path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
+            ],
+          },
+        ]
       },      
 
       /* Articles */
