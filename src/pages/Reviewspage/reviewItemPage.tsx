@@ -83,35 +83,33 @@ interface ReviewPageRenderingProps {
 function renderReviewPage({data, language}:ReviewPageRenderingProps) {
   
     const text = content[language]
-    const translation = data.translations.find(
-        (t) => t.language === language
-    )
 
-    const review_title = data.content_language === language ? data.title : translation?.translated_title
-    const review_markdown = data.content_language === language ? data.body_markdown : translation?.body_markdown
-    const review_ingress = data.content_language === language ? data.ingress : translation?.ingress
+    const { title, body_markdown, ingress, translation_found} = getReviewTranslation({data,language})
 
     return (
         <>
+            <h2>{text.reviews_heading}: {title}</h2>
             <NavLink to={text.reviewspage_link}>{"<<<"} {text.reviewspage_linktext}</NavLink>
-            <h1>{review_title}</h1>
 
             <div className="article-page">
 
                 <div className="article-header-image">
                     <img src={data.imgUrl} />
                 </div>
+                    {renderTranslationMissingWarning({translation_found, language})}
                 <div className="article-ingress">
-                    {review_ingress}
+                    {ingress}
                 </div>
                 <div className="article-metadata">
-                    <h2>{review_title}</h2>
+                    <h2>{title}</h2>
                     <span>{data.published_date}</span>
                     {renderReviewPageTags({data, language})}
                 </div>
                 <div className="article-prose">
+
+
                     <ReactMarkdown>
-                        {review_markdown}
+                        {body_markdown}
                     </ReactMarkdown>
                     <div className="large-review-score">
                         {renderReviewRating(data)}
@@ -127,13 +125,57 @@ function renderReviewPage({data, language}:ReviewPageRenderingProps) {
         </>
     )
 }
-
-interface ReviewPageTagsProps {
-    data : FullReview,
-    language: Language
+interface TranslationWarningProps {
+    translation_found: boolean;
+    language: Language;
 }
 
-export function renderReviewPageTags({data, language}:ReviewPageTagsProps) {
+function renderTranslationMissingWarning({translation_found,language}: TranslationWarningProps) {
+    if (!translation_found) {
+        const text = content[language]
+        return (
+            <div className="article-translation-missing-warn">
+                <img src={warningSvg} alt="warning, translation not found"/>
+                <div>
+                    <b>{text.translation_missing}</b><br/>
+                    {text.translation_missing_p2}
+                </div>
+                
+            </div>
+        )
+    }
+}
+
+function getReviewTranslation({data, language}:ReviewPageRenderingProps) {
+    if (data.content_language === language) {
+        return {
+            title: data.title,
+            body_markdown: data.body_markdown,
+            ingress: data.ingress,
+            translation_found: true,
+        };
+    }
+
+    const translation = data.translations.find(
+        (t) => t.language === language
+    )
+
+    const hasText = (value?: string | null): value is string => Boolean(value?.trim())
+
+    const hasBody = hasText(translation?.body_markdown);
+    const hasIngress = hasText(translation?.ingress);
+    const translation_found = hasBody && hasIngress;
+
+    return {
+        title: translation?.translated_title || data.title,
+        body_markdown: hasBody ? translation!.body_markdown : data.body_markdown,
+        ingress: hasIngress ? translation!.ingress : data.ingress,
+        translation_found,
+  };
+}
+
+
+export function renderReviewPageTags({data, language}:ReviewPageRenderingProps) {
     const tags = data.tags
     const category = data.category
     return (

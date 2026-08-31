@@ -375,6 +375,27 @@
   height:max-content;
 }
 
+.article-translation-missing-warn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 0px;
+  gap: 24px;
+  background-color: rgba(255, 255, 0, 0.288);
+  padding: 15px 15px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.288);
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.article-translation-missing-warn img {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
 .article-ingress {
   justify-content: center;
   text-align: center;
@@ -420,7 +441,7 @@
 }
 
 .large-review-score {
-  margin-top: 40px;
+  margin-top: 60px;
   display:flex;
   justify-content: center;
 }

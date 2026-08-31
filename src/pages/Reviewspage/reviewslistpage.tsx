@@ -129,7 +129,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                         </div>
                         <div className="card-desc">
                             <span>{desc}</span>
-                            {getTranslationMissingWarning({lang,translationFound})}
+                            {getTranslationMissingWarning({lang,review,translationFound})}
                         </div>
                     </div>
                     <div className="card-right-corner">
@@ -157,7 +157,6 @@ export function ReviewRating({review, lang}: ReviewCardProps) {
     const VALID_RATINGS = [0,1,2,3,4,5,6,7,8,9,10];
     const rating_no = review.rating
     if (!rating_no || Number.isSafeInteger(rating_no) && !VALID_RATINGS.includes(rating_no)) {
-        console.log(`Warning: review "${review.title}" rating is invalid (${rating_no}). Not displaying rating.`)  
         return null
     }
 
@@ -243,26 +242,69 @@ function getReviewLink({review, lang}:ReviewDescProps) {
 
 
 function getReviewTranslation({review, lang}:ReviewDescProps) {
+
+    if (review.content_language === lang) {
+        return {
+            title: review.title,
+            desc: review.description,
+            translationFound: true,
+        }
+    }
+
     const translation = review.translations.find(
         (t) => t.language === lang
     )
 
-    const title = translation?.translated_title ?? review.title;
-    const desc = translation?.description ?? undefined;
+    /* External articles can only be partially translated (desc). If user language does not match content language, translation cannot exist */
+    if (review.type === "E") {
+        const title = translation?.translated_title || review.title
+        const desc = translation?.description || review.description
+        const translationFound = review.content_language === lang ? true : false
+        return { title, desc, translationFound }
+    }
 
-    const translationFound = title !== undefined && desc !== undefined;
+    /* YouTube video counts as translated if a subtitle translation has been marked to exist */
+    if (review.type === "V") {
+        const title = translation?.translated_title || review.title
+        const desc = translation?.description || review.description
+        const translationFound = translation?.translated_video_subtitles || false
+        return { title, desc, translationFound }
+    }
+
+    const title = translation?.translated_title || review.title
+    const desc = review.content_language === lang ? review.description : translation?.description 
+    const translationFound = review.content_language === lang ? true : translation !== undefined ? true : false;
     return { title, desc, translationFound };
 }
 
 interface TranslationMissingWarningProps {
     lang: Language;
+    review: Review;
     translationFound: boolean;
 
 }
-function getTranslationMissingWarning({lang, translationFound}:TranslationMissingWarningProps) {
+function getTranslationMissingWarning({lang, review, translationFound}:TranslationMissingWarningProps) {
     
     const text = content[lang]
     
+    if (review.type==="V" && translationFound && review.content_language !== lang) {
+        return (
+            <div className="card-translation-missing-warn">
+                <img src={warningSvg} alt="warning, translation not found"/>
+                <span>{text.translation_video_subtitled}</span>
+            </div>
+        )
+    }
+    
+    if (!translationFound && review.type==="E") {
+        return (
+            <div className="card-translation-missing-warn">
+                <img src={warningSvg} alt="warning, translation not found"/>
+                <span>{text.translation_missing_external}</span>
+            </div>
+        )
+    }
+
     if (!translationFound) {
         return (
             <div className="card-translation-missing-warn">

@@ -6,6 +6,7 @@ export interface ReviewTranslation {
     language: Language; /* "fi" | "en" */
     translated_title?: string;
     description?: string;
+    translated_video_subtitles: boolean;
 }
 
 /**
@@ -17,11 +18,14 @@ export interface Review {
   slug: string;
   category: string;
   rating?: number;
+  content_language: Language;
+  description: string;
   published_date: string;
   tags: { name: string }[]; /* Maybe fix this at backend side to only return strings instead of being nested inside a dict */
   likes: number;
   extras: Record<string, unknown>;
   translations: ReviewTranslation[];
+  fullTranslations: Language[];
   imgUrl?: string;
   ytid?: string;
   e_url?: string;
