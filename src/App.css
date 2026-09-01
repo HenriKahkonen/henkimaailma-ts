@@ -542,6 +542,8 @@
   gap: 5px;
 }
 
+
+
 .sns-card-tags span {
   font-size: small;
   border: 1px solid rgba(0, 0, 0, 0.527);
@@ -550,6 +552,20 @@
   font-style: italic;
   background-color: rgba(219, 217, 190, 0.466);
 }
+
+.sns-licence-tag {
+  font-size: small;
+  width: fit-content;
+  border: 1px solid rgba(0, 0, 0, 0.527);
+  padding: 0px 4px;
+  border-radius: 4px;
+  margin-bottom:6px;
+  font-style: italic;
+  font-weight: bold;
+  background-color: rgba(219, 217, 190, 0.466);
+
+}
+
 
 .sns-description-side {
   max-width:45%;

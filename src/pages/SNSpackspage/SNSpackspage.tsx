@@ -158,12 +158,17 @@ function SnsPackCard({ snspack, language }: SnSPackCardProps) {
                     </a>
                     <div className="sns-metadata">
                         <h2>{snspack.title}</h2>
-                        <div className="sns-card-tags">
-                            {renderSnsCardtags(snspack)}
-                        </div>
+
                         <div className="sns-releasedate">
                             <span>{snspack.release_date.toString()}</span>
                             <span>{updated_date}</span>
+                        </div>
+
+                        <div className="sns-licence-tag">
+                            {text.licence}: {snspack.licence}
+                        </div>
+                        <div className="sns-card-tags">
+                            {renderSnsCardtags(snspack)}
                         </div>
 
                     </div>

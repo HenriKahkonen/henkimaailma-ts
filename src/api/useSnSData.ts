@@ -12,6 +12,7 @@ export interface SnSPack {
     slug: string;
     imgUrl: string;
     e_url: string;
+    licence: string;
     tags: { name: string }[];
     release_date: string;
     updated_date: string;
