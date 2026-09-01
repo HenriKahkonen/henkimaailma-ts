@@ -7,6 +7,8 @@ interface ReviewsPageContent {
     loading: string;
     langWarning?: string;
     translation_missing?: string;
+    translation_video_subtitled?: string;
+    translation_missing_external?: string;
     show_rating: string;
     page: string;
 }
@@ -23,6 +25,8 @@ export const content: Record<Language, ReviewsPageContent> = {
         intro: "Reviews I've written in different formats",
         loading: "Loading reviews...",
         translation_missing: "There isn't a translation in your language for this review.",
+        translation_video_subtitled: "This video is spoken in a different language than yours, but it's subtitled in your chosen language.",
+        translation_missing_external: "This review is hosted elsewhere and its full text is not available in your language.",
         show_rating: "(Show rating)",
         page:"Page:",
       },

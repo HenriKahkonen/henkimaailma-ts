@@ -90,7 +90,7 @@ interface ReviewCardProps {
 function ReviewCard({ review, lang }: ReviewCardProps) {
 
     const image = review.type === "V" ? getYouTubeThumbnail(review.ytid!) : review.imgUrl;
-    const link = getReviewLink(review)
+    const link = getReviewLink({review,lang})
     const icon = review.type === "V" ? youtubeSvg : review.type === "A" ? articleSvg : externalLinkSvg
     
     const {title, desc, translationFound} = getReviewTranslation({review, lang});
@@ -129,7 +129,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                         </div>
                         <div className="card-desc">
                             <span>{desc}</span>
-                            {getTranslationMissingWarning({lang,translationFound})}
+                            {getTranslationMissingWarning({lang,review,translationFound})}
                         </div>
                     </div>
                     <div className="card-right-corner">
@@ -148,23 +148,15 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
     )
 }
  
-function ReviewRating({review, lang}: ReviewCardProps) {
+export function ReviewRating({review, lang}: ReviewCardProps) {
 
     const text = content[lang]
 
     const [isRevealed, setIsRevealed] = useState(false);
 
-    const rating_no = Number(review.extras?.["rating"]);
-
     const VALID_RATINGS = [0,1,2,3,4,5,6,7,8,9,10];
-    if (Number.isSafeInteger(rating_no) && !VALID_RATINGS.includes(rating_no)) {
-        const title = review.title
-        console.log(`Warning: review "${title}" rating is invalid (${rating_no}). Not displaying rating.`)  
-        return null
-    }
-
-
-    if (rating_no === undefined || Number.isNaN(rating_no)) {
+    const rating_no = review.rating
+    if (!rating_no || Number.isSafeInteger(rating_no) && !VALID_RATINGS.includes(rating_no)) {
         return null
     }
 
@@ -197,7 +189,7 @@ function getYouTubeThumbnail(ytid:string) {
     return "https://img.youtube.com/vi/"+ytid+"/maxresdefault.jpg"
 }
 
-function getYouTubeVideoLink(ytid:string) {
+export function getYouTubeVideoLink(ytid:string) {
     return "https://youtu.be/"+ytid
 }
 
@@ -206,7 +198,7 @@ interface ReviewDescProps {
     lang: Language;
 }
 
-function displayReviewTags({review, lang}:ReviewDescProps) {
+export function displayReviewTags({review, lang}:ReviewDescProps) {
     const tags = review.tags
     const category = review.category
     return (
@@ -219,40 +211,100 @@ function displayReviewTags({review, lang}:ReviewDescProps) {
     )
 }
 
-function getReviewLink(review:Review) {
-    if (review.e_url!==undefined) {
+function getReviewLink({review, lang}:ReviewDescProps) {
+    if (review.type==="E" && review.e_url!==undefined) {
         return review.e_url
     }
     else if (review.type==="V") {
         return getYouTubeVideoLink(review.ytid!)
     }
 
-    return "/etusivu" /* placeholder */
+    const REVIEW_PAGE_LINKS = {
+        fi: {
+            V: "/arviot/video/",
+            E: "/arviot/ulkoinen/",
+            A: "/arviot/"
+        },
+        en: {
+            V: "/reviews/video/",
+            E: "/reviews/external/",
+            A: "/reviews/"
+        }
+
+    }
+
+    const reviewpageroot = REVIEW_PAGE_LINKS[lang][review.type]
+    const url = reviewpageroot+review.slug
+
+    return url
 }
 
 
 
 function getReviewTranslation({review, lang}:ReviewDescProps) {
+
+    if (review.content_language === lang) {
+        return {
+            title: review.title,
+            desc: review.description,
+            translationFound: true,
+        }
+    }
+
     const translation = review.translations.find(
         (t) => t.language === lang
     )
 
-    const title = translation?.translated_title ?? review.title;
-    const desc = translation?.description ?? undefined;
+    /* External articles can only be partially translated (desc). If user language does not match content language, translation cannot exist */
+    if (review.type === "E") {
+        const title = translation?.translated_title || review.title
+        const desc = translation?.description || review.description
+        const translationFound = review.content_language === lang ? true : false
+        return { title, desc, translationFound }
+    }
 
-    const translationFound = title !== undefined && desc !== undefined;
+    /* YouTube video counts as translated if a subtitle translation has been marked to exist */
+    if (review.type === "V") {
+        const title = translation?.translated_title || review.title
+        const desc = translation?.description || review.description
+        const translationFound = translation?.translated_video_subtitles || false
+        return { title, desc, translationFound }
+    }
+
+    const title = translation?.translated_title || review.title
+    const desc = review.content_language === lang ? review.description : translation?.description 
+    const translationFound = review.content_language === lang ? true : translation !== undefined ? true : false;
     return { title, desc, translationFound };
 }
 
 interface TranslationMissingWarningProps {
     lang: Language;
+    review: Review;
     translationFound: boolean;
 
 }
-function getTranslationMissingWarning({lang, translationFound}:TranslationMissingWarningProps) {
+function getTranslationMissingWarning({lang, review, translationFound}:TranslationMissingWarningProps) {
     
     const text = content[lang]
     
+    if (review.type==="V" && translationFound && review.content_language !== lang) {
+        return (
+            <div className="card-translation-missing-warn">
+                <img src={warningSvg} alt="warning, translation not found"/>
+                <span>{text.translation_video_subtitled}</span>
+            </div>
+        )
+    }
+    
+    if (!translationFound && review.type==="E") {
+        return (
+            <div className="card-translation-missing-warn">
+                <img src={warningSvg} alt="warning, translation not found"/>
+                <span>{text.translation_missing_external}</span>
+            </div>
+        )
+    }
+
     if (!translationFound) {
         return (
             <div className="card-translation-missing-warn">
