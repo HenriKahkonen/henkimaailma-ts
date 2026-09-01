@@ -300,12 +300,14 @@
   opacity: 1;
   visibility: visible;
   cursor:default;
+  display:block !important;
 }
 
 .hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  display: none !important;
 }
 
 .card-rating-box img {
@@ -461,6 +463,187 @@
 
 .article-page-likes-box img {
   height:20px;
+}
+
+/* SNS Page or: Sounds And Scapes page */ 
+
+.sns-page h2 {
+    margin-top: 60px;
+}
+
+.faq-section {
+  font-size: medium;
+}
+
+.faq-question-q {
+  font-weight:bold;
+  margin-left:40px;
+  font-size:large;
+}
+
+.faq-question-q p {
+  margin-bottom: 0px;
+}
+
+.faq-question-a {
+  margin-left:40px;
+}
+
+.faq-question-a p {
+  margin: 0px;
+}
+
+.sns-packs-list {
+  margin-top:60px;
+  display: flex;
+  flex-direction: row;
+  gap:0px;
+  flex-wrap:wrap;
+  justify-content: center;
+  gap:30px;
+  align-items:flex-start;
+}
+
+.sns-pack-card {
+  min-width: 45%;
+  max-width: 45%;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  background-color: rgb(233, 233, 225);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.466);
+  font-size:small;
+
+  transition: .2s ease;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.sns-pack-card:hover {
+  opacity: 0.95;
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
+}
+
+.sns-card-divider {
+  display:flex;
+  flex-direction: row;
+}
+
+.sns-pack-card p {
+  margin: 0px;
+  line-height: 1.5;
+}
+
+.sns-card-tags {
+  display:flex;
+  gap: 5px;
+}
+
+.sns-card-tags span {
+  font-size: small;
+  border: 1px solid rgba(0, 0, 0, 0.527);
+  padding: 0px 4px;
+  border-radius: 4px;
+  font-style: italic;
+  background-color: rgba(219, 217, 190, 0.466);
+}
+
+.sns-description-side {
+  max-width:45%;
+  padding-left:30px;
+}
+
+.sns-pack-downloadbutton {
+  width:95%;
+  padding:10px;
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  background-color: rgb(247, 247, 242);
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.466);
+  justify-content: flex-start;
+  align-items: center;
+  gap:10px;
+  cursor:pointer;
+  transition: .2s ease;
+  -webkit-transform: background-color( rgb(247, 247, 242));
+  transform: background-color( rgb(247, 247, 242));;
+}
+
+.sns-pack-downloadbutton:hover {
+  transition: .2s ease;
+    background-color: rgb(182, 222, 238);
+
+  -webkit-transform: background-color( rgb(182, 222, 238));
+  transform: background-color( rgb(182, 222, 238));;
+}
+
+.sns-pack-downloadbutton img {
+  width: 60px;
+}
+
+.sns-pack-downloadbutton h2 {
+  margin-top: 0px;
+  font-size: medium;
+}
+
+.sns-metadata h2 {
+  margin-top: 10px;
+  font-size: small;
+}
+
+.sns-releasedate {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  gap:10px;
+}
+
+.sns-filelist-display-button {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+  margin-top: 35px;
+  cursor: pointer;
+  text-align: left;
+  width: auto;
+  justify-self: center;
+  align-self: center;
+  cursor:pointer;
+}
+
+
+.sns-filelist-display-button h3 {
+  margin: 0;
+  font-size: small;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+  cursor:pointer;
+}
+
+.sns-file-list {
+  font-size: x-small;
+  width: 100%;
+}
+
+.sns-file-list ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px 15px;
+  padding-left: 20px;
+  list-style-type: disc;
+  text-align: left;
+}
+
+.sns-file-list li {
+  word-break: break-all;
 }
 
 
