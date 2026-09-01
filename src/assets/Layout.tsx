@@ -21,7 +21,7 @@ function Layout() {
                         <NavBarLink link="/portfolio" linkText={{fi:"Portfolio",en:"Portfolio"}}/>
                         <NavBarLink linklang={{fi:"/arviot",en:"/reviews"}} linkText={{fi:"Arviot",en:"Reviews"}}/>
                         <NavBarLink linklang={{fi:"/kirjoituksia",en:"/articles"}} linkText={{fi:"Kirjoituksia",en:"Articles"}}/>
-                        <NavBarLink linklang={{fi:"/musiikki",en:"/music"}} linkText={{fi:"Musiikki",en:"Music"}}/>
+                        {/*<NavBarLink linklang={{fi:"/musiikki",en:"/music"}} linkText={{fi:"Musiikki",en:"Music"}}/>*/}
                         <NavBarLink link="/sns" linkText={{fi:"Ääniefektit",en:"Sound effects"}}/>
                         {/*<NavBarLink linklang={{fi:"/muuta",en:"/other"}} linkText={{fi:"Kaikkea muuta",en:"Other stuff"}}/>*/}
                         {/*<NavBarLink link="/blog" linkText={{fi:"Blogi",en:"Blog"}}/>*/}

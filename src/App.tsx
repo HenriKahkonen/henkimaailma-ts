@@ -15,6 +15,7 @@ import Portfoliopage from './pages/Portfoliopage/Portfoliopage.tsx'
 import Underconstructionpage from './pages/Underconstructionpage/underconstructionpage.tsx'
 import ReviewsListPage from './pages/Reviewspage/reviewslistpage.tsx'
 import ReviewArticlePage from './pages/Reviewspage/reviewItemPage.tsx'
+import SnSPage from './pages/SNSpackspage/SNSpackspage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       /* Sounds and Scapes samplepacks */
       {
         path: "/sns", element:
-        <Underconstructionpage heading="SnS samplepacks" />
+        <SnSPage />
       },
 
       /* Reviews */
