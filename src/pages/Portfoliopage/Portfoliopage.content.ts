@@ -97,7 +97,7 @@ export const static_content: PortfolioPageContent = {
                     ],
                     tools: [
                         { fi: "Typescript, React, Vite, Docker, Python, Django, PostgreSQL", en: "Typescript, React, Vite, Docker, Python, Django, PostgreSQL" },
-                        { fi: "Hostaus: Neon, ???", en: "Hosting: Neon, ???" },
+                        { fi: "Hostaus: Google Cloud, Netlify", en: "Hosting: Google Cloud, Netlify" },
                         {
                             fi: "Tekoälytyökalut: Claudea käytetty apuna arkkitehtuurin suunnittelemiseen ja hankalampien konseptien selittämiseen",
                             en: "AI tools: Claude has been used to help design the architecture and to explain more difficult concepts",
