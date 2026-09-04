@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, type RouteObject } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, /*type RouteObject*/ } from 'react-router-dom'
 
 /* Context imports */
 import { LanguageProvider } from './assets/LanguageContext'

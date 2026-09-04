@@ -7,14 +7,14 @@ import linkedinSvg from "../../assets/svg/linkedin.svg"
 import youtubeSvg from "../../assets/svg/youtube.svg"
 import emailSvg from "../../assets/svg/email.svg"
 
-import heartSvg from "../../assets/svg/heart.svg"
+/*import heartSvg from "../../assets/svg/heart.svg"*/
 import articleSvg from "../../assets/svg/article-reader.svg"
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
 import linkSvg from "../../assets/svg/linkhub.svg"
 
 import starSvg from "../../assets/svg/star.svg"
 import halfstarSvg from "../../assets/svg/halfstar.svg"
-import fullheartSvg from "../../assets/svg/heart_full.svg"
+/*import fullheartSvg from "../../assets/svg/heart_full.svg"*/
 
 
 interface CC_BY_SA_Svg {

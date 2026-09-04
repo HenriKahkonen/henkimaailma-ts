@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useReviews, type Review, type ReviewsResponse, type ReviewTranslation } from "../../api/useReviews.ts";
+import { useReviews, type Review, /* type ReviewsResponse, type ReviewTranslation */ } from "../../api/useReviews.ts";
 import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
 import { content, getCategoryTranslation } from "./reviewslistpage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
@@ -9,8 +9,8 @@ import youtubeSvg from "../../assets/svg/youtube.svg"
 import articleSvg from "../../assets/svg/article-reader.svg"
 import externalLinkSvg from "../../assets/svg/linkhub.svg"
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
-import heart_unclicked from "../../assets/svg/heart.svg"
-import heart_clicked from "../../assets/svg/heart_full.svg"
+/* import heart_unclicked from "../../assets/svg/heart.svg" */
+/* import heart_clicked from "../../assets/svg/heart_full.svg" */
 import fullStar from "../../assets/svg/star.svg"
 import halfStar from "../../assets/svg/halfstar.svg"
 

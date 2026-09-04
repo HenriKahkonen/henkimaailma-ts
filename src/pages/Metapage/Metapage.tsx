@@ -9,6 +9,7 @@ import { type SocialMediaLink } from "./Metapage.content.ts";
 
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import Error404page from "../Errorpages/Error404page.tsx";
 
 
 function Metapage() {
@@ -16,6 +17,10 @@ function Metapage() {
     const { data, loading, error } = useChangelog();
     const text = content[language];
 
+    if (loading) return (<p>Loading...</p>)
+    if (error) return (
+        <Error404page /> /* TODO replace with proper error page */
+    )
 
     return (
         <AnimatePresence mode="wait">

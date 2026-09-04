@@ -3,7 +3,7 @@ import { useSnsData, type SnSChangelogEntry, type SnSPack } from "../../api/useS
 import { content, licences, type FAQItem, type LicenceInfo } from "./SNSpackspage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 
-import React, { useState } from "react";
+import /*React,*/ { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 
@@ -117,14 +117,13 @@ function SnSChangelogEntry({ entry, language }: SnSChangelogEntryProps) {
     if (!translation) return null;
 
     const title = (translation.title === "" || translation.title === "undefined") ? entry.title : translation.title;
-    const markdown_= translation.body_markdown
-    const date = entry.date.toString()
+    const markdown= translation.body_markdown
 
     return (
         <article>
             <h2>{title}</h2>
             <time dateTime={entry.date}>{entry.date}</time>
-            <ReactMarkdown>{translation.body_markdown}</ReactMarkdown>
+            <ReactMarkdown>{markdown}</ReactMarkdown>
         </article>
     )
 }

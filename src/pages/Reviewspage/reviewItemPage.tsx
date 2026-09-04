@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { type FullReview, type FullReviewTranslation } from "../../api/useReview.ts";
+/*import { useState } from "react";*/
+import { type FullReview, /*type FullReviewTranslation */ } from "../../api/useReview.ts";
 import { useReview, type ReviewType } from "../../api/useReview.ts";
 import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
 import { getCategoryTranslation } from "./reviewslistpage.content.ts";
@@ -7,12 +7,12 @@ import { content } from "./reviewItemPage.content.ts";
 import {motion, AnimatePresence} from 'framer-motion';
 import { NavLink, useParams } from "react-router-dom";
 
-import youtubeSvg from "../../assets/svg/youtube.svg"
-import articleSvg from "../../assets/svg/article-reader.svg"
-import externalLinkSvg from "../../assets/svg/linkhub.svg"
+/*import youtubeSvg from "../../assets/svg/youtube.svg"*/
+/*import articleSvg from "../../assets/svg/article-reader.svg"*/
+/*import externalLinkSvg from "../../assets/svg/linkhub.svg"*/
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
-import heart_unclicked from "../../assets/svg/heart.svg"
-import heart_clicked from "../../assets/svg/heart_full.svg"
+/*import heart_unclicked from "../../assets/svg/heart.svg"*/
+/*import heart_clicked from "../../assets/svg/heart_full.svg"*/
 import fullStar from "../../assets/svg/star.svg"
 import halfStar from "../../assets/svg/halfstar.svg"
 import Error404page from "../Errorpages/Error404page.tsx";
