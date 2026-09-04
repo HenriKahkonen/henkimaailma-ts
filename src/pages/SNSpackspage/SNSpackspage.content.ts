@@ -40,7 +40,7 @@ export const licences: LicenceInfo[] = [
       name: "CC0 Public Domain Dedication",
       description: {
         fi: "Täysin vapaasti käytettävä, tekijänoikeusvapaa materiaali. Voit käyttää miten tahansa, kunhan et väitä tehneesi käyttämääsi CC0-materiaalia itse (ks. tekijän moraalinen oikeus).",
-        en: "Fully free to use, public domain material. Only restriction is that you may now claim you made the CC0 licenced material yourself (see: moral right of author)."
+        en: "Fully free to use, public domain material. Only restriction is that you may not claim you made the CC0 licenced material yourself (see: moral right of author)."
       },
       info_link: "https://creativecommons.org/public-domain/"
     }
