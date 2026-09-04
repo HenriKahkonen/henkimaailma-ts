@@ -17,7 +17,7 @@ export const content: Record<Language, ReviewsPageContent> = {
         reviews_heading: "Arviot",
         intro: "Kirjoittamiani arvioita eri muodoissa",
         loading: "Ladataan arvioita...",
-        show_rating: "(Näytä arvosana)",
+        show_rating: "( Klikkaa näyttääksesi arvosanan )",
         page: "Sivu:",
     },
     en: {
@@ -27,7 +27,7 @@ export const content: Record<Language, ReviewsPageContent> = {
         translation_missing: "There isn't a translation in your language for this review.",
         translation_video_subtitled: "This video is spoken in a different language than yours, but it's subtitled in your chosen language.",
         translation_missing_external: "This review is hosted elsewhere and its full text is not available in your language.",
-        show_rating: "(Show rating)",
+        show_rating: "( Click to show rating )",
         page:"Page:",
       },
 };

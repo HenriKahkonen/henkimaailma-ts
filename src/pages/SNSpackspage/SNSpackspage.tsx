@@ -209,7 +209,7 @@ function SnsPackFileList({ snspack, language }: SnSPackCardProps) {
             onClick={() => setIsRevealed(true)}
             aria-label={text.show_file_list}
         >
-            <span className={`sns-file-list ${isRevealed ? 'hidden' : 'visible'}`}>
+            <span className={`sns-file-fist ${isRevealed ? 'hidden' : 'visible'}`}>
                 <h3>{text.show_file_list}</h3>
             </span>
             <div className={`sns-file-list ${isRevealed ? 'visible' : 'hidden'}`}>
