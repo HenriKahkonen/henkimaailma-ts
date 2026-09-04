@@ -39,7 +39,7 @@ export interface ReviewsResponse {
 
 export function useReviews(page: number) {
   return useApiResource<ReviewsResponse>(`reviews:page=${page}`, () =>
-    fetch(`${api_base_url}/api/get-reviews-list?page=${page}`).then((res) => {
+    fetch(`${api_base_url}/get-reviews-list?page=${page}`).then((res) => {
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       return res.json();
     })

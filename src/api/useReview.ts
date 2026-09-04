@@ -39,7 +39,7 @@ export function useReview(reviewType: ReviewType, slug: string) {
   const endpoint = reviewType === "V" ? "videos" : "articles";
 
   return useApiResource<FullReview>(`${endpoint}:slug=${slug}`, () =>
-    fetch(`${api_base_url}/api/${endpoint}/${slug}`).then((res) => {
+    fetch(`${api_base_url}/${endpoint}/${slug}`).then((res) => {
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       return res.json();
     })

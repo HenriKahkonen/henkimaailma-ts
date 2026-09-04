@@ -40,7 +40,7 @@ export interface SnsDataResponse {
 
 export function useSnsData() {
   return useApiResource<SnsDataResponse>("sns-data", () =>
-    fetch(`${api_base_url}/api/get-sns-data/`).then((res) => {
+    fetch(`${api_base_url}/get-sns-data/`).then((res) => {
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       return res.json();
     })

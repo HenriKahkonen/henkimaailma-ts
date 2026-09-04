@@ -17,7 +17,7 @@ export interface ChangelogEntry {
 
 export function useChangelog() {
   return useApiResource<ChangelogEntry[]>("changelog", () =>
-    fetch(`${api_base_url}/api/get-changelog/`).then((res) => {
+    fetch(`${api_base_url}/get-changelog/`).then((res) => {
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       return res.json();
     })
