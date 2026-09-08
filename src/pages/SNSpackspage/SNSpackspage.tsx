@@ -18,7 +18,6 @@ function SnSPage() {
 
     const packs = data.packs
     const changelog = data.sns_cl
-    console.log(data)
 
     return (
         <AnimatePresence mode="wait">

@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, /*type RouteObject*/ } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, redirect /*type RouteObject*/ } from 'react-router-dom'
 
 /* Context imports */
 import { LanguageProvider } from './assets/LanguageContext'
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/sns", element:
         <SnSPage />
+      },
+      {
+        path: "/posts/sns-samplepacks",
+        loader: () => redirect('/sns?lang=en')
       },
 
       /* Reviews */
