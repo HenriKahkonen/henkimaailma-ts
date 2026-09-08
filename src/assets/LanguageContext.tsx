@@ -3,6 +3,8 @@ import { createContext, useState, useContext } from "react";
 /* Global setup for language context */
 export const LANGUAGES = ["fi", "en"] as const;
 export type Language = (typeof LANGUAGES)[number];
+const langDefault: Language = "fi"
+
 
 /* Path prefixes that should change the language to english */
 const ENG_PATH_PREFIXES = ["reviews","other","articles","music"]
@@ -30,13 +32,10 @@ export function useLanguage() {
 }
 
 function getInitialLanguage(): Language {
-    const langDefault = "fi"
-
-    if (typeof window === "undefined") return "fi";
+    if (typeof window === "undefined") return langDefault;
 
     const params = new URLSearchParams(window.location.search);
     const langParam = params.get("lang");
-
     if (isSupportedLanguage(langParam)) {
         return langParam
     }
@@ -60,5 +59,5 @@ export function getLanguageFromPath(pathname: string): Language | null {
 
   if (ENG_PATH_PREFIXES.includes(firstSegment)) return "en";
 
-  return null; // path doesn't imply a language (e.g. root "/")
+  return null;
 }
