@@ -15,11 +15,24 @@ export interface Timeframe {
     approximate?: boolean;  // True if not sure about exact dates
 }
 
+/**
+ * Accepts optional values all? fi? and en?
+ */
+export type OptionalLocalizedText =
+    | { all : string; fi?: never; en?: never }
+    | { all? : never; fi: string; en: string;};
+
+export interface PortfolioLink {
+    name : OptionalLocalizedText;
+    url : string;
+}
+
 export interface PortfolioProject {
     title: LocalizedText;
     timeframe: Timeframe;
     descriptors: LocalizedText[];
     tools: LocalizedText[];
+    links?: PortfolioLink[];
 }
 
 export interface PortfolioField {
@@ -29,6 +42,7 @@ export interface PortfolioField {
 
 export interface PortfolioPageContent {
     intro: LocalizedText;
+    links_text: LocalizedText;
     fields: PortfolioField[];
 }
 
@@ -66,6 +80,10 @@ export const static_content: PortfolioPageContent = {
         fi: "Tällä sivulla on listattuna joitain projektejani eri aloilla.",
         en: "On this page you can find some of my projects in different fields.",
     },
+    links_text : {
+        fi: "Linkit:",
+        en: "Links:",
+    },
     fields: [
         {
             fieldname: {
@@ -77,6 +95,16 @@ export const static_content: PortfolioPageContent = {
                 {
                     title: { fi: "Henkimaailma 2.0", en: "Personal webpage 2.0" },
                     timeframe: { year: 2026, month: 8 },
+                    links: [
+                        {
+                            name: { all : "GitHub: Frontend"}, 
+                            url: "https://github.com/HenriKahkonen/henkimaailma-ts",
+                        },    
+                        {
+                            name: { all : "GitHub: Backend"}, 
+                            url: "https://github.com/HenriKahkonen/henkimaailma-django-be",
+                        },    
+                    ],
                     descriptors: [
                         {
                             fi: "Vanhasta kotisivusta mukailtu, kokonaan uudestaan Typescriptillä kirjoitettu versio kotisivuistani",
@@ -108,6 +136,12 @@ export const static_content: PortfolioPageContent = {
                 {
                     title: { fi: "Discogs -datan lokaali käsittelijä", en: "Discogs music metadata mirror" },
                     timeframe: { year: 2026, month: 6 },
+                    links: [
+                        {
+                            name: {all: "GitHub"},
+                            url: "https://github.com/HenriKahkonen/Discogs-Metadata-Mirror"
+                        },
+                    ],
                     descriptors: [
                         {
                             fi: "Singalle kehittämästäni työkalusta mukailtu työkalu, jonka avulla koko Discogsin sisältämää musiikkimetadata voidaan hakea lokaalisti",
@@ -140,6 +174,12 @@ export const static_content: PortfolioPageContent = {
                             en: "Converter should in theory work in both ways, but I haven't developed or checked the functionality since I only needed a one-time conversion of all my files into .mp3",
                         },
                     ],
+                    links: [
+                        {
+                            name: {all: "GitHub"},
+                            url: "https://github.com/HenriKahkonen/music-library-ffmpeg-convert"
+                        },
+                    ],
                     tools: [
                         { fi: "Python", en: "Python" },
                     ],
@@ -170,6 +210,12 @@ export const static_content: PortfolioPageContent = {
                 {
                     title: { fi: "Gameplay footage -raportoija", en: "Gameplay footage reporter" },
                     timeframe: { year: 2025, month: 10 },
+                    links: [
+                        {
+                            name: {all: "GitHub"},
+                            url: "https://github.com/HenriKahkonen/GameplayFootageReporter"
+                        },
+                    ],
                     descriptors: [
                         {
                             fi: "Python-ohjelma, joka tutkii kovalevyltäni pelivideomateriaalikansion ja laatii dataraportin videotiedostoista",
@@ -215,6 +261,22 @@ export const static_content: PortfolioPageContent = {
                             en: "Due to engine limitations, the exact shape and orientation of the platform needs to be deduced using trigonometry",
                         },
                     ],
+                    links: [
+                        {
+                            name: {
+                                fi: "GitHub (.wad-tiedosto ja readme)",
+                                en: "GitHub (.wad file and readme)",
+                            },
+                            url: "https://github.com/HenriKahkonen/GZDoom3DConveyorBelts"
+                        },
+                        {
+                            name : {
+                                fi: "Videodemo",
+                                en: "Video demo"
+                            },
+                            url : "https://www.youtube.com/watch?v=efWAZJVvzSc"
+                        },
+                    ],
                     tools: [
                         { fi: "GZdoom, Zscript", en: "GZdoom, Zscript" },
                     ],
@@ -237,6 +299,12 @@ export const static_content: PortfolioPageContent = {
                             en: "Semi-abandoned project in its infancy. I should reboot it now that I know Python a little better",
                         },
                     ],
+                    links: [
+                        {
+                            name : {all: "GitHub"},
+                            url : "https://github.com/HenriKahkonen/tiled_mapgenerator",
+                        }
+                    ],
                     tools: [
                         { fi: "Python", en: "Python" },
                         { fi: "Adobe Photoshop (grafiikat)", en: "Adobe Photoshop (graphics editing)" },
@@ -246,6 +314,19 @@ export const static_content: PortfolioPageContent = {
                 {
                     title: { fi: "Levyraatibotti Jives", en: "Music review service bot Jives" },
                     timeframe: { year: 2023, approximate: true },
+                    links : [
+                        {
+                            name : {all: "GitHub"},
+                            url : "https://github.com/HenriKahkonen/jives-bot",
+                        },
+                        {
+                            name: {
+                                fi: "Wayback Machine: tulossivu",
+                                en: "Wayback Machine: results page"
+                            },
+                            url : "https://web.archive.org/web/20250423233526/http://henkimaailma.net/levyraati",
+                        }
+                    ],
                     descriptors: [
                         {
                             fi: "Kotisivujeni oheen luotu levyraatibotti, jonka kanssa voi vuorovaikuttaa Discord-serverilläni",
@@ -300,6 +381,21 @@ export const static_content: PortfolioPageContent = {
                             en: "Review scores synced to display on my homepage]",
                         },
                     ],
+                    links : [
+                        {
+                            name: {
+                                all: "Github",
+                            },
+                            url: "https://github.com/HenriKahkonen/henkimaailma"
+                        },
+                        {
+                            name: {
+                                fi: "Wayback machine: vanha arkistokopio sivusta",
+                                en: "Wayback machine: old archive copy of site",
+                            },
+                            url: "https://web.archive.org/web/20250423233526/http://henkimaailma.net"
+                        },
+                    ],
                     tools: [
                         { fi: "Javascript, React, Node.js", en: "Javascript, React, Node.js" },
                         { fi: "Hostaus: Netlify, fly.io", en: "Hosting: Netlify, fly.io" },
@@ -309,6 +405,12 @@ export const static_content: PortfolioPageContent = {
                 {
                     title: { fi: "Tekstipohjainen gladiaattoripeli", en: "Text-based gladiator game" },
                     timeframe: { year: 2019, approximate: true },
+                    links : [
+                        {
+                            name : { all : "GitHub"},
+                            url : "https://github.com/HenriKahkonen/Gladiaattoripeli",
+                        }
+                    ],
                     descriptors: [
                         {
                             fi: "Parityönä tehty Java-peli",

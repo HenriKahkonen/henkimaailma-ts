@@ -1,5 +1,5 @@
 import { type Language, useLanguage } from "../../assets/LanguageContext.tsx"
-import { type PortfolioField, static_content, formatTimeframe } from "./Portfoliopage.content.ts"
+import { type PortfolioField, static_content, formatTimeframe, type PortfolioProject } from "./Portfoliopage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 import React from "react"
 
@@ -55,22 +55,57 @@ function renderPortfolioField(field:PortfolioField, lang:Language) {
         <div className="portfolio-item" key={"Project"+project.title.fi}>
           <b>{project.title[lang]}</b>, <span>{formatTimeframe(project.timeframe, lang)}</span>
           {/*<p>{desctext[lang]}</p>*/}
+
           <ul>
             {project.descriptors.map ((desc) => (
               <li key={project.title.fi+desc.fi}>{desc[lang]}</li>
             ))}
           </ul>
+
           <p>{toolstext[lang]}</p>
           <ul>
             {project.tools.map ((tool) => (
               <li key={project.title.fi+tool.fi}>{tool[lang]}</li>
             ))}
           </ul>
+
+          {/* "Links" <p> not rendered if project has no links */}
+          {renderPortfolioProjectLinks({lang,project})}
+
         </div>
       ))}
     
     </div>
   )
+}
+
+
+interface PortfolioLinkProps {
+  lang : Language;
+  project: PortfolioProject
+}
+
+function renderPortfolioProjectLinks ({ lang, project }:PortfolioLinkProps) {
+  const linktxt = static_content.links_text[lang]
+  if (project.links === undefined) {
+    return null
+  }
+  else {
+    return (
+      <>
+        <p>{linktxt}</p>
+        <ul>
+          {project.links.map ((link) => (
+              <li key={link.url}>
+                <a href={link.url}>
+                  {link.name[lang] ? link.name[lang] : link.name.all}
+                </a>
+              </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
 }
 
 export default Portfoliopage;
