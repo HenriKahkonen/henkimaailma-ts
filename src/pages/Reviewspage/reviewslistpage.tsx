@@ -20,8 +20,6 @@ function ReviewsListPage() {
     const { data, loading, error } = useReviews(page);
     const text = content[language];
 
-    console.log(data)
-
     if (loading) return (
         <AnimatePresence mode="wait">
             <motion.div
