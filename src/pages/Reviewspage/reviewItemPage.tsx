@@ -6,6 +6,10 @@ import { getCategoryTranslation } from "./reviewslistpage.content.ts";
 import { content } from "./reviewItemPage.content.ts";
 import {motion, AnimatePresence} from 'framer-motion';
 import { NavLink, useParams } from "react-router-dom";
+import remarkGfm from "remark-gfm";
+import remarkDirective from "remark-directive";
+import { remarkCustomDirectives, customMarkdownComponents } from "../../assets/RemarkCustomDirectives.tsx";
+import ReactMarkdown from "react-markdown";
 
 /*import youtubeSvg from "../../assets/svg/youtube.svg"*/
 /*import articleSvg from "../../assets/svg/article-reader.svg"*/
@@ -16,7 +20,6 @@ import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
 import fullStar from "../../assets/svg/star.svg"
 import halfStar from "../../assets/svg/halfstar.svg"
 import Error404page from "../Errorpages/Error404page.tsx";
-import ReactMarkdown from "react-markdown";
 
 function ReviewArticlePage({reviewType}: {reviewType: ReviewType}) {
     const { language } = useLanguage();
@@ -108,7 +111,10 @@ function renderReviewPage({data, language}:ReviewPageRenderingProps) {
                 <div className="article-prose">
 
 
-                    <ReactMarkdown>
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm, remarkDirective, remarkCustomDirectives]}
+                        components={customMarkdownComponents}
+                    >
                         {body_markdown}
                     </ReactMarkdown>
                     <div className="large-review-score">
