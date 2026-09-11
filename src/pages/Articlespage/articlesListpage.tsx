@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useReviews, type ReviewSummary, /* type ReviewsResponse, type ReviewTranslation */ } from "../../api/useReviews.ts";
+import { useArticles, type ArticleSummary, /* type ReviewsResponse, type ReviewTranslation */ } from "../../api/useArticles";
+import { type ReviewSummary } from "../../api/useReviews.ts";
 import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
-import { content, getCategoryTranslation } from "./reviewslistpage.content.ts"
+import { content, getCategoryTranslation } from "./articlesListpage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 import { NavLink } from "react-router-dom";
 
@@ -11,13 +12,11 @@ import externalLinkSvg from "../../assets/svg/linkhub.svg"
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
 /* import heart_unclicked from "../../assets/svg/heart.svg" */
 /* import heart_clicked from "../../assets/svg/heart_full.svg" */
-import fullStar from "../../assets/svg/star.svg"
-import halfStar from "../../assets/svg/halfstar.svg"
 
-function ReviewsListPage() {
+function ArticlesListPage() {
     const { language } = useLanguage();
     const [page, setPage] = useState(0);
-    const { data, loading, error } = useReviews(page);
+    const { data, loading, error } = useArticles(page);
     const text = content[language];
 
     if (loading) return (
@@ -29,7 +28,7 @@ function ReviewsListPage() {
                 exit={{ opacity:0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut'}}
             >
-                <h1>{text.reviews_heading}</h1>
+                <h1>{text.articles_heading}</h1>
                 <p>{text.intro}</p>
                 <p>{text.loading}</p>
             </motion.div>
@@ -46,7 +45,7 @@ function ReviewsListPage() {
                 exit={{ opacity:0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut'}}
             >
-                <h1>{text.reviews_heading}</h1>
+                <h1>{text.articles_heading}</h1>
                 <p>{text.intro}</p>
                 <div className="errortext">Error: {error}</div>
             </motion.div>
@@ -62,14 +61,14 @@ function ReviewsListPage() {
                 exit={{ opacity:0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut'}}
             >
-                    <h1>{text.reviews_heading}</h1>
+                    <h1>{text.articles_heading}</h1>
                     <p>{text.intro}</p>
                     <div className="cardlistflex">
-                        {data?.reviews.map((r) => <ReviewCard 
+                        {data?.articles.map((r) => <ArticleCard 
                             key={r.slug} 
-                            review={r} 
+                            article={r} 
                             lang={language} />)}
-                        <ReviewpagePaginationNavigation data={data} pagechanger={setPage} language={language}/>
+                        <ArticlePagePaginationNavigation data={data} pagechanger={setPage} language={language}/>
                     </div>
 
             </motion.div>
@@ -80,18 +79,18 @@ function ReviewsListPage() {
 
 /* Review list item rendering */
 
-interface ReviewCardProps {
-    review : ReviewSummary;
+interface ArticleCardProps {
+    article : ArticleSummary;
     lang : Language;
 }
 
-function ReviewCard({ review, lang }: ReviewCardProps) {
+function ArticleCard({ article, lang }: ArticleCardProps) {
 
-    const image = review.type === "V" ? getYouTubeThumbnail(review.ytid!) : review.imgUrl;
-    const link = getReviewLink({review,lang})
-    const icon = review.type === "V" ? youtubeSvg : review.type === "A" ? articleSvg : externalLinkSvg
+    const image = article.type === "V" ? getYouTubeThumbnail(article.ytid!) : article.imgUrl;
+    const link = getArticleCardLink({article,lang})
+    const icon = article.type === "V" ? youtubeSvg : article.type === "A" ? articleSvg : externalLinkSvg
     
-    const {title, desc, translationFound} = getReviewTranslation({review, lang});
+    const {title, desc, translationFound} = getArticleCardTranslations({article, lang});
     
     return (
             <div className="list-card">
@@ -100,7 +99,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                     <NavLink to={link}>
                         <img 
                             src={image}
-                            alt={review.title}
+                            alt={article.title}
                         >
                         </img>
                     </NavLink>
@@ -120,22 +119,21 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                                 <img src={icon}/>
                             </NavLink>
 
-                            <span>{review.published_date}</span>
+                            {getCardPublishingDates({object:article,lang})}
+                            {/*<span>{article.published_date}</span>*/}
+                            
                             <div className="card-tags">
-                                {displayReviewTags({review,lang})}
+                                {displayCardTags({article,lang})}
                             </div>
                         </div>
                         <div className="card-desc">
                             <span>{desc}</span>
-                            {getTranslationMissingWarning({lang,review,translationFound})}
+                            {getTranslationMissingWarning({lang,article,translationFound})}
                         </div>
                     </div>
                     <div className="card-right-corner">
-                        <div className="card-rating-box">
-                            {ReviewRating({review, lang})}
-                        </div>
                         {/*<div className="card-likebox">
-                            <span>{review.likes}</span>
+                            <span>{article.likes}</span>
                             <img src={heart_unclicked} alt="Click to like"/>
                         </div>*/}
                     </div>
@@ -145,43 +143,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
 
     )
 }
- 
-export function ReviewRating({review, lang}: ReviewCardProps) {
 
-    const text = content[lang]
-
-    const [isRevealed, setIsRevealed] = useState(false);
-
-    const VALID_RATINGS = [0,1,2,3,4,5,6,7,8,9,10];
-    const rating_no = review.rating
-    if (!rating_no || Number.isSafeInteger(rating_no) && !VALID_RATINGS.includes(rating_no)) {
-        return null
-    }
-
-    const fullStars = Math.floor(rating_no / 2)
-    const hasHalfStar = rating_no % 2 >= 1;
-
-    return (
-        <button
-            type="button"
-            className="card-rating-box"
-            onClick={() => setIsRevealed(true)}
-            aria-label={text.show_rating}
-        >
-            <span className={`rating-text ${isRevealed ? 'hidden' : 'visible'}`}>
-                {text.show_rating}
-            </span>
-        <div className={`rating-stars ${isRevealed ? 'visible' : 'hidden'}`}>
-            {Array.from({ length: fullStars }).map((_, i) => (
-                <img key={`full-${i}`} src={fullStar} alt="Full star" className="star-icon" />
-            ))}
-            {hasHalfStar && (
-                <img src={halfStar} alt="Half star" className="star-icon" />
-            )}
-        </div>
-        </button>
-    )
-}
 
 function getYouTubeThumbnail(ytid:string) {
     return "https://img.youtube.com/vi/"+ytid+"/maxresdefault.jpg"
@@ -191,14 +153,14 @@ export function getYouTubeVideoLink(ytid:string) {
     return "https://youtu.be/"+ytid
 }
 
-interface ReviewDescProps {
-    review: ReviewSummary;
+interface ArticleCardProps {
+    article: ArticleSummary;
     lang: Language;
 }
 
-export function displayReviewTags({review, lang}:ReviewDescProps) {
-    const tags = review.tags
-    const category = review.category
+export function displayCardTags({article, lang}:ArticleCardProps) {
+    const tags = article.tags
+    const category = article.category
     return (
         <>
             <span className="card-tag-category">{getCategoryTranslation(category,lang)}</span>
@@ -209,83 +171,82 @@ export function displayReviewTags({review, lang}:ReviewDescProps) {
     )
 }
 
-function getReviewLink({review, lang}:ReviewDescProps) {
-    if (review.type==="E" && review.e_url!==undefined) {
-        return review.e_url
+function getArticleCardLink({article, lang}:ArticleCardProps) {
+    if (article.type==="E" && article.e_url!==undefined) {
+        return article.e_url
     }
-    else if (review.type==="V") {
-        return getYouTubeVideoLink(review.ytid!)
+    else if (article.type==="V") {
+        return getYouTubeVideoLink(article.ytid!)
     }
 
-    const REVIEW_PAGE_LINKS = {
+    const ARTICLE_PAGE_LINKS = {
         fi: {
-            V: "/arviot/video/",
-            E: "/arviot/ulkoinen/",
-            A: "/arviot/"
+            V: "/kirjoituksia/video/",
+            E: "/kirjoituksia/ulkoinen/",
+            A: "/kirjoituksia/"
         },
         en: {
-            V: "/reviews/video/",
-            E: "/reviews/external/",
-            A: "/reviews/"
+            V: "/articles/video/",
+            E: "/articles/external/",
+            A: "/articles/"
         }
 
     }
 
-    const reviewpageroot = REVIEW_PAGE_LINKS[lang][review.type]
-    const url = reviewpageroot+review.slug
+    const articlepageroot = ARTICLE_PAGE_LINKS[lang][article.type]
+    const url = articlepageroot+article.slug
 
     return url
 }
 
 
+function getArticleCardTranslations({article, lang}:ArticleCardProps) {
 
-function getReviewTranslation({review, lang}:ReviewDescProps) {
-
-    if (review.content_language === lang) {
+    if (article.content_language === lang) {
         return {
-            title: review.title,
-            desc: review.description,
+            title: article.title,
+            desc: article.description,
             translationFound: true,
         }
     }
 
-    const translation = review.translations.find(
+    const translation = article.translations.find(
         (t) => t.language === lang
     )
 
     /* External articles can only be partially translated (desc). If user language does not match content language, translation cannot exist */
-    if (review.type === "E") {
-        const title = translation?.translated_title || review.title
-        const desc = translation?.description || review.description
-        const translationFound = review.content_language === lang ? true : false
+    if (article.type === "E") {
+        const title = translation?.translated_title || article.title
+        const desc = translation?.description || article.description
+        const translationFound = article.content_language === lang ? true : false
         return { title, desc, translationFound }
     }
 
     /* YouTube video counts as translated if a subtitle translation has been marked to exist */
-    if (review.type === "V") {
-        const title = translation?.translated_title || review.title
-        const desc = translation?.description || review.description
+    if (article.type === "V") {
+        const title = translation?.translated_title || article.title
+        const desc = translation?.description || article.description
         const translationFound = translation?.translated_video_subtitles || false
         return { title, desc, translationFound }
     }
 
-    const title = translation?.translated_title || review.title
-    const desc = review.content_language === lang ? review.description : translation?.description 
-    const translationFound = review.content_language === lang ? true : translation !== undefined ? true : false;
+    const title = translation?.translated_title || article.title
+    const desc = article.content_language === lang ? article.description : translation?.description 
+    const translationFound = article.content_language === lang ? true : translation !== undefined ? true : false;
     return { title, desc, translationFound };
 }
 
 interface TranslationMissingWarningProps {
     lang: Language;
-    review: ReviewSummary;
+    article: ArticleSummary | ReviewSummary;
     translationFound: boolean;
 
 }
-function getTranslationMissingWarning({lang, review, translationFound}:TranslationMissingWarningProps) {
+function getTranslationMissingWarning({lang, article, translationFound}:TranslationMissingWarningProps) {
     
     const text = content[lang]
     
-    if (review.type==="V" && translationFound && review.content_language !== lang) {
+    if (article.type==="V" && translationFound && article.content_language !== lang) {
         return (
             <div className="card-translation-missing-warn">
                 <img src={warningSvg} alt="warning, translation not found"/>
@@ -294,7 +255,7 @@ function getTranslationMissingWarning({lang, review, translationFound}:Translati
         )
     }
     
-    if (!translationFound && review.type==="E") {
+    if (!translationFound && article.type==="E") {
         return (
             <div className="card-translation-missing-warn">
                 <img src={warningSvg} alt="warning, translation not found"/>
@@ -316,13 +277,13 @@ function getTranslationMissingWarning({lang, review, translationFound}:Translati
     }
 }
 
-interface ReviewPagePaginationProps {
-    data: { review_pages: number } | null | undefined;
+interface ArticlePagePaginationProps {
+    data: { article_pages: number } | null | undefined;
     pagechanger: (page: number) => void;
     language: Language;
 }
 
-function ReviewpagePaginationNavigation({data, pagechanger, language}:ReviewPagePaginationProps) {
+function ArticlePagePaginationNavigation({data, pagechanger, language}:ArticlePagePaginationProps) {
     const text = content[language]
 
     if (data == null) {
@@ -334,7 +295,7 @@ function ReviewpagePaginationNavigation({data, pagechanger, language}:ReviewPage
         <div className="paginated-navigation">
             <div>{text.page}</div>
             <div>
-                {Array.from({ length: data.review_pages }, (_, i) => (
+                {Array.from({ length: data.article_pages }, (_, i) => (
                     <button
                         key={i}
                         onClick={() => pagechanger(i)}
@@ -347,5 +308,30 @@ function ReviewpagePaginationNavigation({data, pagechanger, language}:ReviewPage
     )
 }
 
-export default ReviewsListPage;
+interface ListCardProps {
+    object : ArticleSummary | ReviewSummary
+    lang: Language
+}
+
+function getCardPublishingDates({object,lang}:ListCardProps) {
+    const updated_text: Record<Language, string> = {
+        fi: "Päivitetty",
+        en: "Updated"
+    }
+    
+    if (!object.updated_date) {
+        return (
+            <span>{object.published_date}</span>)
+    }
+    return (
+        <>
+            <span>{object.published_date}</span>
+            <span>({updated_text[lang]}: {object.updated_date})</span>
+        </>
+    )
+}
+
+
+
+export default ArticlesListPage;
 

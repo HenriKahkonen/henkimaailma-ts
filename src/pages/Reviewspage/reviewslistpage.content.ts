@@ -38,6 +38,7 @@ export const REVIEW_CATEGORIES = [
     "film_review", 
     "tv_review", 
     "music_review",
+    "book_review",
 ];
 
 export type ReviewCategory = typeof REVIEW_CATEGORIES[number];
@@ -61,6 +62,10 @@ export const category_translations: Record<ReviewCategory, CategoryTranslation> 
     fi: 'Musiikkiarviot',
     en: 'Music reviews',
   },
+  book_review: {
+    fi: 'Kirja-arvio',
+    en: 'Book review',
+  }
 };
 
 export function getCategoryTranslation(

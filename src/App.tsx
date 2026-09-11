@@ -15,6 +15,8 @@ import Portfoliopage from './pages/Portfoliopage/Portfoliopage.tsx'
 import Underconstructionpage from './pages/Underconstructionpage/underconstructionpage.tsx'
 import ReviewsListPage from './pages/Reviewspage/reviewslistpage.tsx'
 import ReviewArticlePage from './pages/Reviewspage/reviewItemPage.tsx'
+import ArticlesListPage from './pages/Articlespage/articlesListpage.tsx'
+import ArticlePage from './pages/Articlespage/articleItemPage.tsx'
 import SnSPage from './pages/SNSpackspage/SNSpackspage.tsx'
 
 const router = createBrowserRouter([
@@ -49,18 +51,16 @@ const router = createBrowserRouter([
         path: "/arviot",
         children: [
           {index: true, element: <ReviewsListPage />},
-          { path: "video", 
-            children: [
-              {path: ":slug", element: <ReviewArticlePage reviewType="V"/>},
-            ],
+          { 
+            path: "video", children: [{path: ":slug", element: <ReviewArticlePage reviewType="V"/>},],
           },
-          { path: "ulkoinen", 
-            children: [
-              {path: ":slug", element: <ReviewArticlePage reviewType="E"/>},
-            ],
+          { 
+            path: "ulkoinen", children: [{path: ":slug", element: <ReviewArticlePage reviewType="E"/>},],
           },
-          { path: ":slug", element: <ReviewArticlePage reviewType="A"/>},
-          ],
+          { 
+            path: ":slug", element: <ReviewArticlePage reviewType="A"/>
+          },
+        ],
       },
       {
         path: "/reviews",        
@@ -82,12 +82,34 @@ const router = createBrowserRouter([
    
       /* Articles */
       {
-        path: "/kirjoituksia", element:
-          <Underconstructionpage heading="Kirjoituksia" />
+        path: "/kirjoituksia",
+        children: [
+          {index: true, element: <ArticlesListPage />},
+          { path: "video", 
+            children: [{path: ":slug", element: <ArticlePage articletype="V"/>},],
+          },
+          { path: "external", 
+            children: [{path: ":slug", element: <ArticlePage articletype="E"/>},],
+          },
+          { path: ":slug", element: <ArticlePage articletype="A"/>},
+          ],
       },
       {
-        path: "/articles", element:
-          <Underconstructionpage heading="Articles" />
+        path: "/articles",
+        children: [
+          {index: true, element: <ArticlesListPage />},
+          { path: "video", 
+            children: [
+              {path: ":slug", element: <ArticlePage articletype="V"/>},
+            ],
+          },
+          { path: "external", 
+            children: [
+              {path: ":slug", element: <ArticlePage articletype="E"/>},
+            ],
+          },
+          { path: ":slug", element: <ArticlePage articletype="A"/>},
+          ]
       },      
 
       /* Music */
