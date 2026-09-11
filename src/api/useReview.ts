@@ -27,7 +27,7 @@ export interface FullReview {
   tags: { name: string }[]; /* Maybe fix this at backend side to only return strings instead of being nested inside a dict */
   likes: number;
   body_markdown?: string;
-  extras: Record<string, unknown>;
+  extras?: Record<string, unknown>;
   translations: FullReviewTranslation[];
   imgUrl?: string;
   ytid?: string;

@@ -2,7 +2,7 @@ import api_base_url from "../config";
 import { useApiResource } from "./useApiResource";
 import { type Language } from "../assets/LanguageContext";
 
-export interface ReviewSummaryTranslation {
+export interface ArticleSummaryTranslation {
     language: Language; /* "fi" | "en" */
     translated_title?: string;
     description?: string;
@@ -12,12 +12,11 @@ export interface ReviewSummaryTranslation {
 /**
  * The response item received from the backend. Fields must match exactly
  */
-export interface ReviewSummary {
+export interface ArticleSummary {
   title: string;
-  type: "A" | "E" | "V"; /* Text review, External article or Video */
+  type: "A" | "E" | "V"; /* Text, External article or Video */
   slug: string;
   category: string;
-  rating?: number;
   content_language: Language;
   description: string;
   published_date: string;
@@ -25,22 +24,22 @@ export interface ReviewSummary {
   tags: { name: string }[]; /* Maybe fix this at backend side to only return strings instead of being nested inside a dict */
   likes: number;
   extras?: Record<string, unknown>;
-  translations: ReviewSummaryTranslation[];
+  translations: ArticleSummaryTranslation[];
   fullTranslations: Language[];
   imgUrl?: string;
   ytid?: string;
   e_url?: string;
 }
 
-export interface ReviewsResponse {
-  total_reviews: number;
-  review_pages: number;
-  reviews: ReviewSummary[];
+export interface ArticlesResponse {
+  total_articles: number;
+  article_pages: number;
+  articles: ArticleSummary[];
 }
 
-export function useReviews(page: number) {
-  return useApiResource<ReviewsResponse>(`reviews:page=${page}`, () =>
-    fetch(`${api_base_url}/get-reviews-list?page=${page}`).then((res) => {
+export function useArticles(page: number) {
+  return useApiResource<ArticlesResponse>(`articles:page=${page}`, () =>
+    fetch(`${api_base_url}/get-articles-list?page=${page}`).then((res) => {
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       return res.json();
     })
