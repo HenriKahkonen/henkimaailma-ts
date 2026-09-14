@@ -1,119 +1,79 @@
+/***********************************************/
+/* index.css :Global definitions and variables */
+/***********************************************/
+
 :root {
-  --content_width: 70vw; /*Content box, header, footer*/
-  --content_width_mobile: 90vw;
+  --content_width: 71vw; /*Content box, header, footer*/
+  --content_width_mobile: 100vw;
   --bg_color: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(255,255,255,1) 100%, rgba(0,212,255,1) 100%);
   
-  --borders: 2vh;
-  --shadow: 0px 0px 80px #080808;
-  --smallshadow: 10px 10px 30px #08080886;
-
-  --shadow_gap: 0px 65px #08080886;
-  --gap: 16px;
-  --gap_mobile: 10px;
   --edge_rounding: 5px;
+  --chunk-shadow: 10px 10px 30px #08080886;
+  --small-shadow: 5px 5px 15px #08080848;
 
-  --margin_top: 0px;
-  --margin_top_mobile: 0px;
-  --margin_edges: 40px;
-  --margin_edges_mobile:10px;
-  --margin_bot: 10px;
-  --margin-header:30px;
-  --margin-footer:10px;
+  --page-chunk-gap: 10px;
+  --page-chunk-gap-mobile: 5px;
+  --page-margins: 1vh;
+  --page-margins-mobile: 5px;
+  --page-content-padding: 30px;
+  --page-content-padding-mobile: 10px;
 
-  /*Teksti ja linkit*/
-  --fontsize: 16px;
-  --fontsize_mobile: 10px;
-  --font_height:1.4;
-  --typeface: courier;
-  --linkColor :#1b0807;
-  --linkHoverColor: #0b64b8;
-  text-align: left;
+  --text_color: #4f4b53;
+  --text-color-heading: #08060d;
 
-
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+  font: 18px/145% var(--font-sans);
   letter-spacing: 0.18px;
+  
   color-scheme: light dark;
-  color: var(--text);
-  /*background: var(--bg);*/
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: var(--content_width);
-  max-width: 100%;
-  margin: auto;
-  text-align: center;
-  min-height: 100svh;
-  box-sizing: border-box;
-
-  font-size: medium;
 }
 
 body {
   margin: 0;
   background-image: url(/img/bg.png);
-  background-size:30%;background-repeat: repeat;background-position: center;background-attachment: fixed;
+  background-size:30%;
+  background-repeat: repeat;
+  background-position: center;
+  background-attachment: fixed;
+  @media (max-width: 1024px) {
+    background-attachment:local;
+  }
 }
 
+#root {
+  width: var(--content_width);
+  margin:auto;
+  text-align: center;
+  font-size:medium;
+  color: var(--text_color);
+  @media (max-width: 1024px) {
+    font-size: 14px;
+    line-height: 20px;
+    width: var(--content_width_mobile)
+  }
+}
 
-h1,
-h2 {
-  font-family: var(--heading);
+h1,h2,h3,h4 {
+  font-family: var(--font-heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: var(--text-color-heading);
 }
 
 h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
-  margin: 32px 0;
+  margin: 0px 0;
+  line-height: 56px;
   @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+    font-size: 26px;
+    line-height: 30px;
+    margin: 5px 0px;
   }
 }
 h2 {
@@ -122,11 +82,9 @@ h2 {
   letter-spacing: -0.24px;
   margin: 0 0 8px;
   @media (max-width: 1024px) {
-    font-size: 20px;
+    font-size: 16px;
+    line-height:22px;
   }
-}
-p {
-  margin-top:1,5em;
 }
 
 code,
@@ -143,3 +101,110 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.page-wrapper {
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+  gap: var(--page-chunk-gap);
+  margin: var(--page-margins);
+  @media (max-width: 1024px) {
+    gap: var(--page-chunk-gap-mobile);
+    margin: var(--page-margins-mobile);
+  }
+}
+
+.page-chunk {
+  background: var(--bg_color);
+  width: 100%;
+  border-radius: var(--edge_rounding);
+  margin-top: var(--margin_top);
+  margin-bottom: var(--margin_bot);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-shadow: var(--chunk-shadow);
+}
+
+.page-content {
+  min-height: 60vh;
+  padding: var(--page-content-padding);
+    @media (max-width: 1024px) {
+    gap: var(--page-chunk-gap-mobile);
+    margin: var(--page-margins-mobile);
+    padding: var(--page-content-padding-mobile)
+  }
+}
+
+.site-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px;
+  border-color: black;
+  border-style: none none solid none;
+}
+
+.nav-header h1 {
+  text-align: left;
+  font-size: x-large;
+}
+
+.lang-select-prompt {
+  text-align: right;
+}
+
+.language-warning {
+  color:rgb(204, 36, 36);
+  font-size: small;
+  line-height: 120%;
+}
+
+.navlinks {
+  display: flex;
+  flex-direction: row;
+  padding:10px;
+  padding-top:5px;
+  justify-content: space-evenly;
+  gap: 3px;
+}
+
+.navbarlink {
+  flex-grow: 1;
+}
+
+.lang-select {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  font-size:smaller
+}
+
+.lang-select-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.lang-select-buttons button {
+  border-style: none;
+}
+
+.site-footer {
+  text-align: right;
+  font-size: small;
+  padding:10px;
+}
+
+
+
+

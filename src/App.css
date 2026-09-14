@@ -1,123 +1,25 @@
-.page-wrapper {
-  display:flex;
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
-}
-
-.page-chunk {
-  background: var(--bg_color);
-  width: 100%;
-  border-radius: var(--edge_rounding);
-  
-  margin-top: var(--margin_top);
-  margin-bottom: var(--margin_bot);
-
-  display: flex;
-  flex-direction: column;
-
-  text-align: left;
-
-  box-shadow: var(--smallshadow);
-}
-
-.page-content {
-  min-height: 60vh;
-  background: var(--bg_color);
-  padding: 30px;
-  border-radius: var(--edge_rounding)
-}
-
-.site-nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.nav-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-  border: 1px;
-  border-color: black;
-  border-style: none none solid none;
-}
-
-.nav-header h1 {
-  text-align: left;
-  font-size: x-large;
-}
-
-.lang-select-prompt {
-  text-align: right;
-}
-
-.language-warning {
-  color:rgb(204, 36, 36);
-  font-size: small;
-  line-height: 120%;
-}
-
-.navlinks {
-  display: flex;
-  flex-direction: row;
-  padding:10px;
-  padding-top:5px;
-  justify-content: space-evenly;
-  gap: 3px;
-}
-
-.navbarlink {
-  flex-grow: 4;
-  
-}
-
-.lang-select {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-start;
-  font-size:smaller
-}
-
-.lang-select-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.lang-select-buttons button {
-  border-style: none;
-}
-
-.site-footer {
-  text-align: right;
-  font-size: small;
-  padding:10px;
-}
-
-
-
+/******************/
 /* Portfolio page */
+/******************/
 
 .portfolio-field {
   display:flex;
   flex-direction: column;
   width:100%;
   gap:20px;
-  /*align-items: flex-end;*/
 }
 
 .portfolio-field h2 {
   align-self:flex-start;
 }
+
 .portfolio-item {
   background-color: rgb(233, 233, 225);
   width: 85%;
   padding: 10px;
   border-radius: 10px;
   margin-left: 40px;
+  /*box-shadow: var(--small-shadow);*/
 
   border-color: black;
   border-style: solid;
@@ -138,7 +40,9 @@
   margin-left: 20px;
 }
 
-/* Review / Article List page */
+/***********************************/
+/* Review / Article card list page */
+/***********************************/
 
 .cardlistflex {
   margin-top:40px;
@@ -372,8 +276,9 @@
   margin-right: 2px;
 }
 
-
-/* Article page, reused for articles and reviews */
+/******************************************************/
+/* Article page, reused for text articles and reviews */
+/******************************************************/
 .article-page {
   display:flex;
   flex-direction: column;
@@ -727,7 +632,9 @@
   margin: 0px;
 }
 
-/*Meta page*/
+/*************/
+/* Meta page */
+/*************/
 
 .site-changelog-list {
   margin-top: 60px;
