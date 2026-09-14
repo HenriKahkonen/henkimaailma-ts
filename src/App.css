@@ -366,6 +366,7 @@
   flex-shrink: 0;
 }
 
+
 .paginated-navigation button {
   margin-left: 2px;
   margin-right: 2px;
@@ -383,7 +384,6 @@
 }
 
 .article-header-image { /* Article main image */
-  height: 600px;
   display:flex;
   justify-content: center;
   margin-top: 30px;
@@ -391,7 +391,7 @@
 }
 
 .article-header-image {
-  height:max-content;
+  height:600px;
 }
 
 .article-translation-missing-warn {
@@ -425,7 +425,7 @@
 }
 
 .article-metadata {
-  width: 70%;
+  width: 80%;
 }
 
 .article-page-tags {
@@ -448,7 +448,7 @@
 }
 
 .article-prose {
-  width: 70%;
+  width: 80%;
   margin-top:40px;
   margin-bottom:40px;
   display: flex;
@@ -539,13 +539,12 @@
 }
 
 .sns-packs-list {
-  margin-top:60px;
+  margin-top:20px;
   display: flex;
   flex-direction: row;
-  gap:0px;
   flex-wrap:wrap;
   justify-content: center;
-  gap:30px;
+  gap:15px;
   align-items:flex-start;
 }
 
@@ -719,6 +718,14 @@
   word-break: break-all;
 }
 
+.sns-changelog article {
+  margin-top:30px;
+  margin-left:40px;
+}
+
+.sns-changelog h3 {
+  margin: 0px;
+}
 
 /*Meta page*/
 

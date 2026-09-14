@@ -55,12 +55,13 @@ function SnSPage() {
                     ))}
                 </div>
 
-                <h2>Changelog</h2>
-                    <div>
-                        {changelog.map((entry) => (
-                            <SnSChangelogEntry key = {"Changelog-"+entry.title.toString()} entry = {entry} language={language} />
-                        ))}
-                    </div>
+                <div className="sns-changelog">
+                    <h2>Changelog:</h2>
+
+                    {changelog.map((entry) => (
+                        <SnSChangelogEntry key = {"Changelog-"+entry.title.toString()} entry = {entry} language={language} />
+                    ))}
+                </div>
 
             </div>
             </motion.div>
@@ -120,7 +121,7 @@ function SnSChangelogEntry({ entry, language }: SnSChangelogEntryProps) {
 
     return (
         <article>
-            <h2>{title}</h2>
+            <h3>{title}</h3>
             <time dateTime={entry.date}>{entry.date}</time>
             <ReactMarkdown>{markdown}</ReactMarkdown>
         </article>
