@@ -279,6 +279,7 @@
 /******************************************************/
 /* Article page, reused for text articles and reviews */
 /******************************************************/
+
 .article-page {
   display:flex;
   flex-direction: column;
@@ -286,32 +287,41 @@
   align-items: center;
   width:80%;
   margin: auto;
+  @media (max-width:1024px) {
+    width:95%;
+  }
 }
 
 .article-header-image { /* Article main image */
   display:flex;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom:60px;
+  margin: 30px 0px 60px 0px;
+  @media (max-width:1024px) {
+    margin: 20px 0px 20px 0px;
+  }
 }
 
-.article-header-image {
+.article-header-image img {
   height:600px;
+  @media (max-width:1024px) {
+    height: 220px;
+  }
 }
 
 .article-translation-missing-warn {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-left: 0px;
+  margin: 20px 0px 40px 0px;
   gap: 24px;
   background-color: rgba(255, 255, 0, 0.288);
   padding: 15px 15px;
-  margin-top: 8px;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.288);
-  margin-top: 20px;
-  margin-bottom: 40px;
+  @media (max-width:1024px) {
+    width:90%;
+    margin: 20px 0px 20px 0px;
+  }
 }
 
 .article-translation-missing-warn img {
@@ -327,10 +337,18 @@
   line-height: 40px;
   font-style: italic;
   margin-bottom: 60px;
+  @media (max-width:1024px) {
+    font-size:medium;
+    line-height: 25px;
+    margin-bottom: 20px;  
+  }
 }
 
 .article-metadata {
   width: 80%;
+  @media (max-width:1024px) {
+    width:100%;
+  }
 }
 
 .article-page-tags {
@@ -358,18 +376,30 @@
   margin-bottom:40px;
   display: flex;
   flex-direction: column;
+  @media (max-width:1024px) {
+    width:100%;
+    margin: 20px 0px 20px 0px;
+  }
+}
+
+.article-prose ul li {
+  @media (max-width:1024px) {
+    margin: 0px 0px 5px 0px;
+    list-style-position: outside;
+  }
 }
 
 .article-prose figure {
   width: 100%;
   justify-self: center;
   align-self: center;
-  margin: auto;
   display:flex;
   flex-direction: column;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 40px 0 40px 0;
   align-items: center;
+  @media (max-width:1024px) {
+    margin: 10px 0 10px 0;
+  }
 }
 
 .article-prose figure iframe {
@@ -388,17 +418,26 @@
   margin-top: 20px;
   font-style: italic;
   color:rgb(137, 140, 143);
+  @media (max-width:1024px) {
+    width: 100%;
+  }
 }
 
 .large-review-score {
   margin-top: 60px;
   display:flex;
   justify-content: center;
+  gap:40px;
+  @media (max-width:1024px) {
+    gap:10px;
+    margin-top:20px;
+  }
 }
 .large-review-score img {
-  margin-left: 20px;
-  margin-right: 20px;
   width: 60px;
+  @media (max-width:1024px) {
+    width:40px;
+  }
 }
 
 .article-page-likes-box {
