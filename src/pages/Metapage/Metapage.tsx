@@ -31,6 +31,8 @@ function Metapage() {
                 exit={{ opacity:0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut'}}
             >
+            <div className="metapage">
+
                 <div className="meta-info-box">
                     <h2>{text.contact}</h2>
                     <p>{text.contact_body}</p>
@@ -52,11 +54,14 @@ function Metapage() {
                 </div>
 
                 <h1>{text.changelog_heading}</h1>
-                    {data?.map((entry) => (
-                        <React.Fragment key = {"Changelog-"+entry.id.toString()}>
-                            {renderChangelogEntry({entry},language)}
-                        </React.Fragment>
-                    ))}
+                    <div className="site-changelog-list">
+                        {data?.map((entry) => (
+                            <React.Fragment key = {"Changelog-"+entry.id.toString()}>
+                                {renderChangelogEntry({entry},language)}
+                            </React.Fragment>
+                        ))}
+                    </div>
+            </div>
             </motion.div>
         </AnimatePresence>
     );
@@ -130,11 +135,13 @@ function renderChangelogEntry({ entry }: {entry: ChangelogEntry}, lang: Language
     if (!translation) return null;
 
     return (
-        <article>
-            <h2>{translation.translated_title}</h2>
-            <time dateTime={entry.date}>{entry.date}</time>
-            <ReactMarkdown>{translation.body_markdown}</ReactMarkdown>
-        </article>
+        <div className="site-changelog-entry">
+            <article>
+                <h2>{translation.translated_title}</h2>
+                <time dateTime={entry.date}>{entry.date}</time>
+                <ReactMarkdown>{translation.body_markdown}</ReactMarkdown>
+            </article>
+        </div>
     )
 }
 

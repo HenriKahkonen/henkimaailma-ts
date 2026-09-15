@@ -99,7 +99,6 @@ function renderReviewPage({data, language}:ReviewPageRenderingProps) {
                 <div className="article-header-image">
                     <img src={data.imgUrl} />
                 </div>
-                    {renderTranslationMissingWarning({translation_found, language})}
                 <div className="article-ingress">
                     {ingress}
                 </div>
@@ -108,7 +107,9 @@ function renderReviewPage({data, language}:ReviewPageRenderingProps) {
                     <span>{data.published_date}</span>
                     {renderReviewPageTags({data, language})}
                 </div>
+
                 <div className="article-prose">
+                {renderTranslationMissingWarning({translation_found, language})}
 
 
                     <ReactMarkdown

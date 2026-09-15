@@ -36,7 +36,7 @@ export const content: Record<Language, ReviewsPageContent> = {
         articles_heading: "Articles",
         reviews_heading: "Review",
         loading: "Loading review...",
-        translation_missing: "There isn't a translation in your selected language for this review.",
+        translation_missing: "There isn't a translation in your selected language for this article.",
         translation_missing_p2: "This article was written in another language and an appropriate translation was not found.",
         show_rating: "(Show rating)",
 

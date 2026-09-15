@@ -15,14 +15,14 @@ interface ReviewsPageContent {
 export const content: Record<Language, ReviewsPageContent> = {
     fi: {
         reviews_heading: "Arviot",
-        intro: "Kirjoittamiani arvioita eri muodoissa",
+        intro: "Kirjoittamiani arvioita eri muodoissa.",
         loading: "Ladataan arvioita...",
         show_rating: "( Klikkaa näyttääksesi arvosanan )",
         page: "Sivu:",
     },
     en: {
         reviews_heading: "Reviews",
-        intro: "Reviews I've written in different formats",
+        intro: "Reviews I've written in different formats.",
         loading: "Loading reviews...",
         translation_missing: "There isn't a translation in your language for this review.",
         translation_video_subtitled: "This video is spoken in a different language than yours, but it's subtitled in your chosen language.",
