@@ -152,6 +152,7 @@ code {
   border: 1px;
   border-color: black;
   border-style: none none solid none;
+
 }
 
 .nav-header h1 {
@@ -176,6 +177,10 @@ code {
   padding-top:5px;
   justify-content: space-evenly;
   gap: 3px;
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 
 .navbarlink {
