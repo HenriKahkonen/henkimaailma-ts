@@ -457,7 +457,10 @@
 /***************************************/
 
 .sns-page h2 {
-    margin-top: 60px;
+    margin-top: 40px;
+    @media (max-width:1024px) {
+      margin-top: 20px;
+    }
 }
 
 .faq-section {
@@ -468,14 +471,23 @@
   font-weight:bold;
   margin-left:40px;
   font-size:large;
+  @media (max-width:1024px) {
+    font-size:medium;
+    margin-left:10px;
+    margin-bottom:0px;
+  }
 }
 
 .faq-question-q p {
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 
 .faq-question-a {
   margin-left:40px;
+  @media (max-width:1024px) {
+    margin-left:10px;
+    font-size:14px;
+  }
 }
 
 .faq-question-a p {
@@ -490,6 +502,10 @@
   justify-content: center;
   gap:15px;
   align-items:flex-start;
+  @media(max-width:1024px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .sns-pack-card {
@@ -507,17 +523,30 @@
   transition: .2s ease;
   -webkit-transform: scale(1);
   transform: scale(1);
+  @media(max-width:1024px) {
+    min-width:95%;
+    max-width:95%;
+    padding:10px;
+  }
 }
 
 .sns-pack-card:hover {
   opacity: 0.95;
   -webkit-transform: scale(1.01);
   transform: scale(1.01);
+  @media(max-width:1024px) {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 
 .sns-card-divider {
   display:flex;
   flex-direction: row;
+  @media(max-width:1024px) {
+    flex-direction: column;
+    gap:20px;  
+  }
 }
 
 .sns-pack-card p {
@@ -552,10 +581,13 @@
 
 }
 
-
 .sns-description-side {
   max-width:45%;
   padding-left:30px;
+  @media (max-width:1024px) {
+    padding:0;
+    max-width:95%;
+  }
 }
 
 .sns-pack-downloadbutton {
@@ -574,6 +606,10 @@
   transition: .2s ease;
   -webkit-transform: background-color( rgb(247, 247, 242));
   transform: background-color( rgb(247, 247, 242));;
+  @media (max-width:1024px) {
+    padding:10px;
+    width:92%;  
+  }
 }
 
 .sns-pack-downloadbutton:hover {
@@ -665,10 +701,16 @@
 .sns-changelog article {
   margin-top:30px;
   margin-left:40px;
+  @media(max-width:1024px) {
+    margin: 10px 0 0 0;
+  }
 }
 
 .sns-changelog h3 {
   margin: 0px;
+  @media (max-width:1024px) {
+    font-size:small;
+  }
 }
 
 /*************/

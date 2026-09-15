@@ -179,7 +179,6 @@ function SnsPackCard({ snspack, language }: SnSPackCardProps) {
             </div>
 
             <div className="sns-file-list">
-                {/* Rendered as JSX standard element */}
                 <SnsPackFileList snspack={snspack} language={language} />
             </div>
         </div>
