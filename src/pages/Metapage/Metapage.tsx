@@ -31,6 +31,8 @@ function Metapage() {
                 exit={{ opacity:0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut'}}
             >
+            <div className="metapage">
+
                 <div className="meta-info-box">
                     <h2>{text.contact}</h2>
                     <p>{text.contact_body}</p>
@@ -59,6 +61,7 @@ function Metapage() {
                             </React.Fragment>
                         ))}
                     </div>
+            </div>
             </motion.div>
         </AnimatePresence>
     );
