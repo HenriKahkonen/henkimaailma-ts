@@ -93,6 +93,6 @@ export const SOCIAL_LINKS: SocialMediaLink[] = [
     { socialName : "YouTube", svg: youtubeSvg, link: "https://www.youtube.com/@henkonen", linktext: "@HenKonen" },
     { socialName : "GitHub", svg: githubSvg, link: "https://github.com/HenriKahkonen", linktext: "HenriKahkonen" },
     { socialName : "LinkedIn", svg: linkedinSvg, link: "https://www.linkedin.com/in/henri-k%C3%A4hk%C3%B6nen/", linktext: "Henri Kähkonen" },
-    { socialName : "Discord", svg: discordSvg, link: "https://discord.gg/GPtVSVaVz7", linktext: "Henkimaailma" },
     { socialName : "Bluesky", svg: blueskySvg, link: "https://bsky.app/profile/henkonen.bsky.social", linktext: "@henkonen.bsky.social" },
+    { socialName : "Discord", svg: discordSvg, link: "https://discord.gg/GPtVSVaVz7", linktext: "Henkimaailma" },
 ]
