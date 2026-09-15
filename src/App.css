@@ -56,6 +56,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width:1024px) {
+    gap: 30px;
+  }
 }
 
 .list-card {
@@ -65,9 +68,8 @@
   flex-direction:row;
   align-items:center;
 
-  min-width: 95;
+  min-width: 95%;
   padding:10px;
-
 
   transition: .2s ease;
   -webkit-transform: scale(1);
@@ -75,7 +77,15 @@
   border-radius: 10px;
   box-sizing: border-box;
 
-  /*align-items:stretch;*/
+  @media (max-width:1024px) {
+    flex-direction:column;
+    background-color: rgb(233, 233, 225);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.466);
+    width:100%;
+    padding:20px 5px 20px 5px;
+    gap: 10px;
+  }
 
 }
 
@@ -83,7 +93,70 @@
   opacity: 0.95;
   -webkit-transform: scale(1.03);
   transform: scale(1.03);
+  @media (max-width:1024px) {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }
+
+/* List card, mobile */
+
+.card-mobile-img-rating-container {
+  display: none;
+  @media (max-width:1024px) {
+    display:flex;
+    width: 100%;
+    height:200px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-shrink: 0;
+  }
+}
+
+.card-mobile-img-rating-container a {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-mobile-img-rating-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit:contain;
+  display:block;
+}
+
+.card-mobile-rating-box {
+  width: 40%;
+  height: 120px;
+  text-align:center;
+  font-size: 10px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap:5px;
+}
+
+.card-mobile-rating-box button {
+  margin-top:10px;
+  border: none;
+  background-color: inherit;
+}
+
+.card-mobile-rating-box button span {
+  cursor:pointer;
+}
+
+.card-mobile-rating-box img {
+  width: 30px;
+  height: 30px;
+}
+
+
+/*List view, desktop*/
 
 .card-img-container {
   width: 20%;
@@ -93,6 +166,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  @media (max-width:1024px) {
+    display:none;
+  }
 }
 
 .card-img-container a {
@@ -110,6 +186,17 @@
   display:block;
 }
 
+/* List card, shared */
+
+.card-title h2 {
+    @media (max-width:1024px) {
+     font-size:xx-large;
+     line-height:36px;
+     text-align:center;
+     margin:5px 0 15px 0;
+  }
+}
+
 .card-others {
   margin-left:20px;
   padding:10px;
@@ -120,21 +207,23 @@
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.466);
   justify-content: space-between;
+  @media (max-width:1024px) {
+    flex-direction: column;
+    background-color: inherit;
+    border: none;
+    border-radius:0px;
+    padding:3px;
+    margin:0px;
+  }
 }
 
 .card-metadata-section {
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
-
 }
 
-.card-title {
-  display: flex;
-  align-self: flex-start;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
 
 .card-metadata {
   display:flex;
@@ -142,6 +231,18 @@
   align-items: center;
   gap: 8px;
   align-self:flex-start;
+  flex-wrap: nowrap;
+  @media (max-width:1024px) {
+    width:100%;
+    justify-content:space-between;
+  }
+}
+
+.card-link-and-date {
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  gap: 10px;
 }
 
 .card-metadata span {
@@ -158,6 +259,10 @@
   display:flex;
   gap: 5px;
   margin-left: 10px;
+  flex-wrap:wrap;
+  @media (max-width:1024px) {
+    justify-content: flex-end;
+  }
 }
 
 .card-tags span {
@@ -171,6 +276,9 @@
 
 .card-tag-category {
   margin-right: 10px;
+  @media (max-width:1024px) {
+    margin:0px;
+  }
 }
 
 .card-desc {
@@ -197,6 +305,9 @@
   align-items: flex-start;
   position: relative;
   gap:5px;
+  @media (max-width:1024px) {
+    display:none;
+  }
 }
 
 .card-rating-box button {
@@ -269,6 +380,13 @@
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.288);
   font-size: 12px;
+  @media (max-width:1024px) {
+    margin:auto;
+    margin-top:20px;
+    justify-content: center;
+    gap: 12px;
+    justify-self:center;
+  }
 }
 
 .card-translation-missing-warn img {
@@ -277,6 +395,16 @@
   flex-shrink: 0;
 }
 
+.paginated-navigation {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top:20px;
+  @media (max-width:1024px) {
+    margin-top:10px;
+  }
+}
 
 .paginated-navigation button {
   margin-left: 2px;
@@ -328,6 +456,7 @@
   @media (max-width:1024px) {
     width:90%;
     margin: 20px 0px 20px 0px;
+    align-self: center;
   }
 }
 

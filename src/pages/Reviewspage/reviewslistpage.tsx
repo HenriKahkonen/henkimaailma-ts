@@ -96,6 +96,19 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
     return (
             <div className="list-card">
 
+                <div className="card-mobile-img-rating-container">
+                    <NavLink to={link}>
+                        <img 
+                            src={image}
+                            alt={review.title}
+                        >
+                        </img>
+                    </NavLink>
+
+                    <div className="card-mobile-rating-box">
+                        {ReviewRating({review, lang,css_class:"card-mobile-rating-box"})}
+                    </div>
+                </div>
                 <div className="card-img-container">
                     <NavLink to={link}>
                         <img 
@@ -116,11 +129,12 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                             </NavLink>
                         </div>
                         <div className="card-metadata">
-                            <NavLink to= {link}>
-                                <img src={icon}/>
-                            </NavLink>
-
-                            <span>{review.published_date}</span>
+                            <div className="card-link-and-date">
+                                <NavLink to= {link}>
+                                    <img src={icon}/>
+                                </NavLink>
+                                <span>{review.published_date}</span>
+                            </div>
                             <div className="card-tags">
                                 {displayReviewTags({review,lang})}
                             </div>
@@ -132,7 +146,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                     </div>
                     <div className="card-right-corner">
                         <div className="card-rating-box">
-                            {ReviewRating({review, lang})}
+                            {ReviewRating({review, lang,css_class:"card-rating-box"})}
                         </div>
                         {/*<div className="card-likebox">
                             <span>{review.likes}</span>
@@ -145,8 +159,14 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
 
     )
 }
- 
-export function ReviewRating({review, lang}: ReviewCardProps) {
+
+interface reviewRatingProps {
+    review: ReviewSummary;
+    lang: Language;
+    css_class: string;
+}
+
+export function ReviewRating({review, lang, css_class}: reviewRatingProps) {
 
     const text = content[lang]
 
@@ -164,7 +184,7 @@ export function ReviewRating({review, lang}: ReviewCardProps) {
     return (
         <button
             type="button"
-            className="card-rating-box"
+            className={css_class}
             onClick={() => setIsRevealed(true)}
             aria-label={text.show_rating}
         >

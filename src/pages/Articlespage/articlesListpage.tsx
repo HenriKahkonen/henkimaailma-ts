@@ -94,6 +94,15 @@ function ArticleCard({ article, lang }: ArticleCardProps) {
     
     return (
             <div className="list-card">
+                <div className="card-mobile-img-rating-container">
+                    <NavLink to={link}>
+                        <img 
+                            src={image}
+                            alt={article.title}
+                        >
+                        </img>
+                    </NavLink>
+                </div>
 
                 <div className="card-img-container">
                     <NavLink to={link}>
