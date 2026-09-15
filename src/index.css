@@ -4,6 +4,7 @@
 
 :root {
   --content_width: 71vw; /*Content box, header, footer*/
+  --content_width_medium: 86vw; /* E.g. tablet on its side*/
   --content_width_mobile: 100vw;
   --bg_color: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(255,255,255,1) 100%, rgba(0,212,255,1) 100%);
   
@@ -52,6 +53,9 @@ body {
   text-align: center;
   font-size:medium;
   color: var(--text_color);
+  @media (max-width: 1300px) {
+    width: var(--content_width_medium)
+  }
   @media (max-width: 1024px) {
     font-size: 14px;
     line-height: 20px;
