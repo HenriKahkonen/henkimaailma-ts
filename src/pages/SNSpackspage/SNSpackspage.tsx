@@ -3,7 +3,9 @@ import { useSnsData, type SnSChangelogEntry, type SnSPack } from "../../api/useS
 import { content, licences, type FAQItem, type LicenceInfo } from "./SNSpackspage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 
-import /*React,*/ { useState } from "react";
+import /*React,*/ { useState, useEffect } from "react";
+import { trackPageView } from "../../assets/trackPageView.tsx";
+
 import ReactMarkdown from "react-markdown";
 
 
@@ -11,6 +13,10 @@ function SnSPage() {
     const { language } = useLanguage();
     const { data, loading, error } = useSnsData();
     const text = content[language];
+    
+    useEffect(() => {
+      trackPageView({content_type:"genericpage",slug:"sns-page"})
+    }, []);
 
     if (loading) { return <p>{text.loading}</p>}
     if (error) { return <div className="errortext">Error: {error}</div>}
@@ -141,11 +147,20 @@ function SnsPackCard({ snspack, language }: SnSPackCardProps) {
         <>({text.updated} {snspack.updated_date})</>
     );
 
+    const handleClick = () => {
+        trackPageView({content_type: "soundsandscapespack", slug:snspack.slug})
+    }
+
     return (
         <div className="sns-pack-card">
             <div className="sns-card-divider">
                 <div className="sns-metadata-side">
-                    <a href={snspack.e_url}>
+                    <a 
+                    href={snspack.e_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleClick}
+                    >
                         <div className="sns-pack-downloadbutton">
                             <div className="sns-pack-image">
                                 <img src={snspack.imgUrl} alt={snspack.title} />
