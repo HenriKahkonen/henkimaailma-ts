@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useArticles, type ArticleSummary, /* type ReviewsResponse, type ReviewTranslation */ } from "../../api/useArticles";
 import { type ReviewSummary } from "../../api/useReviews.ts";
 import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
 import { content, getCategoryTranslation } from "./articlesListpage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 import { NavLink } from "react-router-dom";
+import { type HenkimaailmaContentType } from "../../assets/trackPageView.tsx";
+
+import { trackPageView } from "../../assets/trackPageView.tsx";
 
 import youtubeSvg from "../../assets/svg/youtube.svg"
 import articleSvg from "../../assets/svg/article-reader.svg"
@@ -18,6 +21,10 @@ function ArticlesListPage() {
     const [page, setPage] = useState(0);
     const { data, loading, error } = useArticles(page);
     const text = content[language];
+
+    useEffect(() => {
+      trackPageView({content_type:"genericpage",slug:"articles-page"})
+    }, []);
 
     if (loading) return (
         <AnimatePresence mode="wait">
@@ -92,41 +99,59 @@ function ArticleCard({ article, lang }: ArticleCardProps) {
     
     const {title, desc, translationFound} = getArticleCardTranslations({article, lang});
     
+    const typeMap: Record<string, HenkimaailmaContentType> = {
+            V: "video",
+            A: "article",
+            E: "article",
+        }
+        
+        const contentType: HenkimaailmaContentType = typeMap[article.type]
+        const isInternal = article.type === "A";
+
+        const handleClick = () => {
+            trackPageView({content_type: contentType, slug:article.slug})
+        }
+
+        const linkProps = isInternal
+            ? {to: link, onClick: handleClick}
+            : {href: link, target: "_blank", rel: "noopener noreferrer", onClick: handleClick};
+        const LinkComponent: any = isInternal ? NavLink : "a";
+
     return (
             <div className="list-card">
                 <div className="card-mobile-img-rating-container">
-                    <NavLink to={link}>
+                    <LinkComponent {...linkProps}>
                         <img 
                             src={image}
                             alt={article.title}
                         >
                         </img>
-                    </NavLink>
+                     </LinkComponent>
                 </div>
 
                 <div className="card-img-container">
-                    <NavLink to={link}>
+                    <LinkComponent {...linkProps}>
                         <img 
                             src={image}
                             alt={article.title}
                         >
                         </img>
-                    </NavLink>
+                    </LinkComponent>
                 </div>
 
                 <div className="card-others">
                     <div className="card-metadata-section">
                         <div className="card-title">
-                            <NavLink to={link}>
+                            <LinkComponent {...linkProps}>
                                 <div>
                                     <h2>{title}</h2>
                                 </div>
-                            </NavLink>
+                            </LinkComponent>
                         </div>
                         <div className="card-metadata">
-                            <NavLink to= {link}>
+                            <LinkComponent {...linkProps}>
                                 <img src={icon}/>
-                            </NavLink>
+                            </LinkComponent>
 
                             {getCardPublishingDates({object:article,lang})}
                             {/*<span>{article.published_date}</span>*/}

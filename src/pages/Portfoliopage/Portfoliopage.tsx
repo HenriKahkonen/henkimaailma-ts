@@ -1,12 +1,17 @@
 import { type Language, useLanguage } from "../../assets/LanguageContext.tsx"
 import { type PortfolioField, static_content, formatTimeframe, type PortfolioProject } from "./Portfoliopage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
-import React from "react"
+import React, { useEffect } from "react"
+import { trackPageView } from "../../assets/trackPageView.tsx";
 
 function Portfoliopage() {
   const { language } = useLanguage();
   const text = static_content;
   const fields = static_content.fields
+
+  useEffect(() => {
+      trackPageView({content_type:"genericpage",slug:"portfolio-page"})
+    }, []);
 
   return (
     <AnimatePresence mode="wait">

@@ -2,10 +2,16 @@ import { useLanguage } from "../../assets/LanguageContext.tsx"
 import { content } from "./Homepage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
 import ReactMarkdown from "react-markdown";
+import { trackPageView } from "../../assets/trackPageView.tsx";
+import { useEffect } from "react";
 
 function Homepage() {
   const { language } = useLanguage();
   const text = content[language];
+  
+  useEffect(() => {
+    trackPageView({content_type:"genericpage",slug:"index-page"})
+  }, []);
 
   return (
     <AnimatePresence mode="wait">
@@ -32,3 +38,8 @@ function Homepage() {
 }
 
 export default Homepage;
+
+
+
+
+

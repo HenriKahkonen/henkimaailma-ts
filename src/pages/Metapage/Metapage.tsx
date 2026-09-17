@@ -7,7 +7,9 @@ import { SOCIAL_LINKS, CC_BY_Svgs, type CC_BY_SA_Author } from "./Metapage.conte
 
 import { type SocialMediaLink } from "./Metapage.content.ts";
 
-import React from "react";
+import React, { useEffect } from "react"
+import { trackPageView } from "../../assets/trackPageView.tsx";
+
 import ReactMarkdown from "react-markdown";
 import Error404page from "../Errorpages/Error404page.tsx";
 
@@ -16,6 +18,10 @@ function Metapage() {
     const { language } = useLanguage();
     const { data, loading, error } = useChangelog();
     const text = content[language];
+
+    useEffect(() => {
+      trackPageView({content_type:"genericpage",slug:"meta-page"})
+    }, []);
 
     if (loading) return (<p>Loading...</p>)
     if (error) return (
