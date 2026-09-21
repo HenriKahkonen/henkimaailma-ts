@@ -1,4 +1,26 @@
 /******************/
+/*** Home page ****/
+/******************/
+
+.index-drawing-box {
+  display:block;
+  width: 400px;
+  float:right;
+  margin: 10px;
+  @media (max-width:1024px) {
+    display:block;
+    float:none;
+    width: 80vw;
+    padding: 0 0 10px 10px;
+    margin:auto;
+  }
+}
+
+.index-drawing-box img {
+  width: 100%;
+}
+
+/******************/
 /* Portfolio page */
 /******************/
 

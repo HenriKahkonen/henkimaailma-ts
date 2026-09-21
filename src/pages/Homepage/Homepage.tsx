@@ -4,6 +4,8 @@ import {motion, AnimatePresence} from 'framer-motion';
 import ReactMarkdown from "react-markdown";
 import { trackPageView } from "../../assets/trackPageView.tsx";
 import { useEffect } from "react";
+import indexdrawing from "../../../public/img/hm_index_drawing.png"
+
 
 function Homepage() {
   const { language } = useLanguage();
@@ -23,6 +25,9 @@ function Homepage() {
         transition={{ duration: 0.4, ease: 'easeInOut'}}
       >
         <div className="homepage">
+          <div className="index-drawing-box">
+            <img src={indexdrawing} alt="" />
+          </div>
 
           <h1>{text.heading}</h1>
           <ReactMarkdown>{text.intro}</ReactMarkdown>
