@@ -66,7 +66,7 @@ export const content: Record<Language, SnSPageContent> = {
             },
             {
                 q: "Mikä on tekijän 'moraalinen oikeus'?",
-                a: "Koska SnS-paketit ovat julkaistu Suomessa, ovat ne Suomen tekijänoikeuslain alaisia myös siinä mielessä, miten Suomen laki tulkitsee tekijänoikeuksien raukeamista ja 'public domainia' (käsite, jota suomalaisessa tekijänoikeuskäytännössä ei ole samalla tavalla kuin amerikkalaisessa vastaavassa. \n\nMoraalisella oikeudella tarkoitetaan tekijän oikeutta tulla tunnustetuksi teoksensa tekijänä, ja tämä oikeus säilyy ikuisuuteen myös varsinaisen teoksen levitysoikeuksien raukeamisen jälkeen. Käytännössä tämä tarkoittaa esimerkiksi CC0-lisenssin tapauksessa sitä, että *vaikka voit jättää kertomatta, mistä käyttämäsi CC0 -sample on peräisin, et voi lain mukaan väittää tehneesi sitä itse*, sillä se loukkaisi ääniraidan tekijöiden oikeutta tulla tunnustetuksi teoksen tekijöinä."
+                a: "Koska SnS-paketit ovat julkaistu Suomessa, ovat ne Suomen tekijänoikeuslain alaisia myös siinä mielessä, miten Suomen laki tulkitsee tekijänoikeuksien raukeamista ja 'public domainia' (käsite, jota suomalaisessa tekijänoikeuskäytännössä ei ole samalla tavalla kuin amerikkalaisessa vastaavassa). \n\nMoraalisella oikeudella tarkoitetaan tekijän oikeutta tulla tunnustetuksi teoksensa tekijänä, ja tämä oikeus säilyy ikuisuuteen myös varsinaisen teoksen levitysoikeuksien raukeamisen jälkeen. Käytännössä tämä tarkoittaa esimerkiksi CC0-lisenssin tapauksessa sitä, että *vaikka voit jättää kertomatta, mistä käyttämäsi CC0 -sample on peräisin, et voi lain mukaan väittää tehneesi sitä itse*, sillä se loukkaisi ääniraidan tekijöiden oikeutta tulla tunnustetuksi teoksen tekijöinä."
             },
         ],
         loading: "Ladataan SnS -dataa...",
@@ -96,7 +96,7 @@ export const content: Record<Language, SnSPageContent> = {
             },
             {
                 q: "What is the 'moral' right in copyright?",
-                a: "Being published in Finland, all of the material in this page is still beholdent to the way copyright and public domain is interpreted under the Finnish copyright law. \n\n In Finland the author retains forever a right to be identified as the source and author of a work even if the rights to distribute and make copies of a work are not reserved. In the case of CC0 licencing, *you may omit the information about where the CC0 licenced sample you used originated from, but you may not claim you created the sample yourself* as that would violate the sound author's right to be recognized as the creators of their work."
+                a: "Being published in Finland, all of the material in this page is still beholdent to the way copyright and public domain is interpreted under the Finnish copyright law. \n\n In Finland the author retains forever a right to be identified as the source and author of a work even if the rights to distribute and make copies of a work are not reserved. In the case of CC0 licencing, *you may omit the information about where the CC0 licenced sample you used originated from, but you may not claim you created the sample yourself* as that would violate the sound author's right to be recognized as the creator of their work."
             },
         ],
         loading: "Loading SnS sample pack data...",
