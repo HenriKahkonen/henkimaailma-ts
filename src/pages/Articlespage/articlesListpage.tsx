@@ -113,7 +113,7 @@ function ArticleCard({ article, lang }: ArticleCardProps) {
         }
 
         const linkProps = isInternal
-            ? {to: link, onClick: handleClick}
+            ? {to: link/*, onClick: handleClick*/} // Don't track internal page visits on list click but when landing on the page 
             : {href: link, target: "_blank", rel: "noopener noreferrer", onClick: handleClick};
         const LinkComponent: any = isInternal ? NavLink : "a";
 
