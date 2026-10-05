@@ -6,13 +6,12 @@ import {motion, AnimatePresence} from 'framer-motion';
 import { NavLink } from "react-router-dom";
 
 import { trackPageView, type HenkimaailmaContentType } from "../../assets/trackPageView.tsx";
+import LikeButton from "../../assets/likeButton.tsx";
 
 import youtubeSvg from "../../assets/svg/youtube.svg"
 import articleSvg from "../../assets/svg/article-reader.svg"
 import externalLinkSvg from "../../assets/svg/linkhub.svg"
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
-/* import heart_unclicked from "../../assets/svg/heart.svg" */
-/* import heart_clicked from "../../assets/svg/heart_full.svg" */
 import fullStar from "../../assets/svg/star.svg"
 import halfStar from "../../assets/svg/halfstar.svg"
 
@@ -96,6 +95,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
     const image = review.type === "V" ? getYouTubeThumbnail(review.ytid!) : review.imgUrl;
     const link = getReviewLink({review,lang})
     const icon = review.type === "V" ? youtubeSvg : review.type === "A" ? articleSvg : externalLinkSvg
+    const text = content[lang]
     
     const {title, desc, translationFound} = getReviewTranslation({review, lang});
 
@@ -172,10 +172,14 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
                         <div className="card-rating-box">
                             {ReviewRating({review, lang,css_class:"card-rating-box"})}
                         </div>
-                        {/*<div className="card-likebox">
-                            <span>{review.likes}</span>
-                            <img src={heart_unclicked} alt="Click to like"/>
-                        </div>*/}
+                        <LikeButton 
+                            content_type={typeMap[review.type]}
+                            slug={review.slug}
+                            initialLikes={review.likes}
+                            cssClass="card-likebox"
+                            likes_text={text.likes}
+                            likes_text_singular={text.likes_singular}
+                        />
                     </div>
                 </div>
 
