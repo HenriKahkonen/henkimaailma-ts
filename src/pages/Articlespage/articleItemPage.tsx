@@ -11,7 +11,8 @@ import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
 import { remarkCustomDirectives, customMarkdownComponents } from "../../assets/RemarkCustomDirectives.tsx";
 import ReactMarkdown from "react-markdown";
-
+import { useEffect } from "react";
+import { trackPageView } from "../../assets/trackPageView.tsx";
 /*import youtubeSvg from "../../assets/svg/youtube.svg"*/
 /*import articleSvg from "../../assets/svg/article-reader.svg"*/
 /*import externalLinkSvg from "../../assets/svg/linkhub.svg"*/
@@ -27,6 +28,10 @@ function ArticlePage({articletype}: {articletype: ArticleType}) {
     const { slug } = useParams();
 
     if (!slug) return <Error404page/>
+
+    useEffect(() => {
+        trackPageView({content_type:"article", slug: slug })
+    }, []);
     
     const { data, loading, error } = useArticle(articletype, slug);
 

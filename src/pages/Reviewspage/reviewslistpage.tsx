@@ -113,7 +113,7 @@ function ReviewCard({ review, lang }: ReviewCardProps) {
     }
 
     const linkProps = isInternal
-        ? {to: link, onClick: handleClick}
+        ? {to: link/* , onClick: handleClick*/} // Don't track visit for internal links on click, but instead when landing on the page 
         : {href: link, target: "_blank", rel: "noopener noreferrer", onClick: handleClick};
     const LinkComponent: any = isInternal ? NavLink : "a";
 
