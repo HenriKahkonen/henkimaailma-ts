@@ -11,6 +11,8 @@ interface ReviewsPageContent {
     translation_missing_external?: string;
     show_rating: string;
     page: string;
+    likes: string;
+    likes_singular: string;
 }
 export const content: Record<Language, ReviewsPageContent> = {
     fi: {
@@ -19,6 +21,8 @@ export const content: Record<Language, ReviewsPageContent> = {
         loading: "Ladataan arvioita...",
         show_rating: "( Klikkaa näyttääksesi arvosanan )",
         page: "Sivu:",
+        likes_singular: "Tykkäys",
+        likes: "Tykkäystä",
     },
     en: {
         reviews_heading: "Reviews",
@@ -29,6 +33,8 @@ export const content: Record<Language, ReviewsPageContent> = {
         translation_missing_external: "This review is hosted elsewhere and its full text is not available in your language.",
         show_rating: "( Click to show rating )",
         page:"Page:",
+        likes_singular:"Like",
+        likes:"Likes",
       },
 };
 

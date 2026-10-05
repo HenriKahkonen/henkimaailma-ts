@@ -10,6 +10,8 @@ interface ArticlesPageContent {
     translation_video_subtitled?: string;
     translation_missing_external?: string;
     page: string;
+    likes: string;
+    likes_singular: string;
 }
 export const content: Record<Language, ArticlesPageContent> = {
     fi: {
@@ -17,6 +19,8 @@ export const content: Record<Language, ArticlesPageContent> = {
         intro: "Videoesseet, blogikirjoitukset, vlogit, kommentaarit ynnä muut.",
         loading: "Ladataan kirjoituksia...",
         page: "Sivu:",
+        likes: "Tykkäystä",
+        likes_singular: "Tykkäys",
     },
     en: {
         articles_heading: "Articles",
@@ -26,6 +30,8 @@ export const content: Record<Language, ArticlesPageContent> = {
         translation_video_subtitled: "This video is spoken in a different language than yours, but it's subtitled in your chosen language.",
         translation_missing_external: "This review is hosted elsewhere and its full text is not available in your language.",
         page:"Page:",
+        likes_singular:"Like",
+        likes:"Likes",
       },
 };
 
