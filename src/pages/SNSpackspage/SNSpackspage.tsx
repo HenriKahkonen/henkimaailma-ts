@@ -2,7 +2,7 @@ import { useLanguage, type Language } from "../../assets/LanguageContext.tsx"
 import { useSnsData, type SnSChangelogEntry, type SnSPack } from "../../api/useSnSData.ts"
 import { content, licences, type FAQItem, type LicenceInfo } from "./SNSpackspage.content.ts"
 import {motion, AnimatePresence} from 'framer-motion';
-
+import LikeButton from "../../assets/likeButton.tsx";
 import /*React,*/ { useState, useEffect } from "react";
 import { trackPageView } from "../../assets/trackPageView.tsx";
 
@@ -154,7 +154,7 @@ function SnsPackCard({ snspack, language }: SnSPackCardProps) {
     return (
         <div className="sns-pack-card">
             <div className="sns-card-divider">
-                <div className="sns-metadata-side">
+                <div className="sns-description-side">
                     <a 
                     href={snspack.e_url}
                     target="_blank"
@@ -170,26 +170,36 @@ function SnsPackCard({ snspack, language }: SnSPackCardProps) {
                             </div>
                         </div>
                     </a>
-                    <div className="sns-metadata">
-                        <h2>{snspack.title}</h2>
+                    <p>{desc?.description}</p>
+                </div>
 
+                <div className="sns-metadata-side">
+
+                    <div className="sns-metadata">
+                        {/*<h2>{snspack.title}</h2>*/}
                         <div className="sns-releasedate">
                             <span>{snspack.release_date.toString()}</span>
                             <span>{updated_date}</span>
                         </div>
-
                         <div className="sns-licence-tag">
                             {text.licence}: {snspack.licence}
                         </div>
                         <div className="sns-card-tags">
                             {renderSnsCardtags(snspack)}
                         </div>
-
                     </div>
-                </div>
 
-                <div className="sns-description-side">
-                    <p>{desc?.description}</p>
+
+                    <LikeButton 
+                        content_type="soundsandscapespack"
+                        slug={snspack.slug}
+                        initialLikes={snspack.likes}
+                        cssClass="sns-card-likebox"
+                        likes_text={text.likes}
+                        likes_text_singular={text.likes_singular}
+                    />
+
+
                 </div>
             </div>
 

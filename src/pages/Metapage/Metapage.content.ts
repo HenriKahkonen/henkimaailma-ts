@@ -7,14 +7,14 @@ import linkedinSvg from "../../assets/svg/linkedin.svg"
 import youtubeSvg from "../../assets/svg/youtube.svg"
 import emailSvg from "../../assets/svg/email.svg"
 
-/*import heartSvg from "../../assets/svg/heart.svg"*/
+import heartSvg from "../../assets/svg/heart.svg"
 import articleSvg from "../../assets/svg/article-reader.svg"
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
 import linkSvg from "../../assets/svg/linkhub.svg"
 
 import starSvg from "../../assets/svg/star.svg"
 import halfstarSvg from "../../assets/svg/halfstar.svg"
-/*import fullheartSvg from "../../assets/svg/heart_full.svg"*/
+import fullheartSvg from "../../assets/svg/heart_full.svg"
 
 
 interface CC_BY_SA_Svg {
@@ -38,7 +38,7 @@ export const CC_BY_Svgs: CC_BY_SA_Author[] = [
                 { icon: youtubeSvg, name: "youtube" },
                 { icon: emailSvg, name: "huawei-email" },
 
-                /*{ icon: heartSvg, name: "heart" },*/
+                { icon: heartSvg, name: "heart" },
                 { icon: articleSvg, name: "article-reader" },
                 { icon: warningSvg, name: "symbol-exclamation-mark" },
                 { icon: linkSvg, name: "linkhub" },
@@ -49,7 +49,7 @@ export const CC_BY_Svgs: CC_BY_SA_Author[] = [
             icons : [
                 { icon : starSvg, name :"star"},
                 { icon : halfstarSvg, name :"halfstar"},
-                /*{ icon : fullheartSvg, name :"filled-heart"},*/
+                { icon : fullheartSvg, name :"filled-heart"},
             ]
         },
 

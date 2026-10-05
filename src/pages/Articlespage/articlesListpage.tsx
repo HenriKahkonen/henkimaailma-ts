@@ -8,13 +8,11 @@ import { NavLink } from "react-router-dom";
 import { type HenkimaailmaContentType } from "../../assets/trackPageView.tsx";
 
 import { trackPageView } from "../../assets/trackPageView.tsx";
-
+import LikeButton from "../../assets/likeButton.tsx";
 import youtubeSvg from "../../assets/svg/youtube.svg"
 import articleSvg from "../../assets/svg/article-reader.svg"
 import externalLinkSvg from "../../assets/svg/linkhub.svg"
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
-/* import heart_unclicked from "../../assets/svg/heart.svg" */
-/* import heart_clicked from "../../assets/svg/heart_full.svg" */
 
 function ArticlesListPage() {
     const { language } = useLanguage();
@@ -98,7 +96,8 @@ function ArticleCard({ article, lang }: ArticleCardProps) {
     const icon = article.type === "V" ? youtubeSvg : article.type === "A" ? articleSvg : externalLinkSvg
     
     const {title, desc, translationFound} = getArticleCardTranslations({article, lang});
-    
+    const text = content[lang]
+
     const typeMap: Record<string, HenkimaailmaContentType> = {
             V: "video",
             A: "article",
@@ -166,10 +165,15 @@ function ArticleCard({ article, lang }: ArticleCardProps) {
                         </div>
                     </div>
                     <div className="card-right-corner">
-                        {/*<div className="card-likebox">
-                            <span>{article.likes}</span>
-                            <img src={heart_unclicked} alt="Click to like"/>
-                        </div>*/}
+                        <div/>
+                        <LikeButton 
+                            content_type={typeMap[article.type]}
+                            slug={article.slug}
+                            initialLikes={article.likes}
+                            cssClass="card-likebox"
+                            likes_text={text.likes}
+                            likes_text_singular={text.likes_singular}
+                        />
                     </div>
                 </div>
 
