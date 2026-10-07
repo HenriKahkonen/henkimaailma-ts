@@ -115,7 +115,7 @@ export const static_content: PortfolioPageContent = {
                             en: "The old site was cumbersome to update; as my first larger Javascript project the code had eventually spaghetti-fied. I wanted to recreate the site with a more modern stack.",
                         },
                         {
-                            fi: "Vain muutama sisältö (kuten portfoliosivu mukaan lukien) on hardkoodattu frontendiin, kaikki muu sivusisältö haetaan backendistä",
+                            fi: "Vain muutama sisältö (esimerkiksi tämä portfoliosivu) on hardkoodattu frontendiin, kaikki muu sivusisältö haetaan backendistä",
                             en: "A minority of the content (such as this portfolio page) is hardcoded to the frontend, all other site content is fetched from the backend API",
                         },
                         {
