@@ -33,6 +33,8 @@ interface SnSPageContent {
     licence: string;
     show_file_list: string;
     download: string;
+    likes: string;
+    likes_singular: string;
 }
 
 export const licences: LicenceInfo[] = [
@@ -75,7 +77,8 @@ export const content: Record<Language, SnSPageContent> = {
         licence: "Lisenssi",
         show_file_list: "Näytä tiedostolistaus",
         download: "Lataa tästä",
-
+        likes: "Tykkäystä",
+        likes_singular: "Tykkäys"
     },
     en: {
         sns_heading: "Sounds and Scapes -sample packs",
@@ -105,5 +108,7 @@ export const content: Record<Language, SnSPageContent> = {
         licence: "Licence",
         show_file_list: "Show file list",
         download: "Download here",
+        likes: "Likes",
+        likes_singular: "Like",
     },
 };

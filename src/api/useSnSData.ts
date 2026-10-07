@@ -16,7 +16,7 @@ export interface SnSPack {
     tags: { name: string }[];
     release_date: string;
     updated_date: string;
-    likes: Number;
+    likes: number;
     translations: SnsPackDescription[];
     file_list: string[];
 }

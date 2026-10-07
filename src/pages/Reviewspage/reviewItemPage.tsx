@@ -12,6 +12,7 @@ import { remarkCustomDirectives, customMarkdownComponents } from "../../assets/R
 import ReactMarkdown from "react-markdown";
 import { useEffect } from "react";
 import { trackPageView } from "../../assets/trackPageView.tsx";
+import LikeButton from "../../assets/likeButton.tsx";
 /*import youtubeSvg from "../../assets/svg/youtube.svg"*/
 /*import articleSvg from "../../assets/svg/article-reader.svg"*/
 /*import externalLinkSvg from "../../assets/svg/linkhub.svg"*/
@@ -126,10 +127,17 @@ function renderReviewPage({data, language}:ReviewPageRenderingProps) {
                     <div className="large-review-score">
                         {renderReviewRating(data)}
                     </div>
-                    {/*<div className="article-page-likes-box">
-                            <img src={heart_unclicked} />
-                            {data.likes} {text.likes}
-                    </div>*/}
+                    <div className="article-page-footer">
+                        <div><i> {text.reviews_heading}: {data.title}</i></div>
+                        <LikeButton 
+                            cssClass="article-page-likes-box"
+                            content_type="article"
+                            slug={data.slug}
+                            initialLikes={data.likes}
+                            likes_text={text.likes}
+                            likes_text_singular={text.likes_singular}
+                        />
+                    </div>
                 </div>
 
 

@@ -11,6 +11,7 @@ interface ReviewsPageContent {
     rating: string;
     show_rating: string;
     likes: string;
+    likes_singular: string;
     reviewspage_link : string;
     reviewspage_linktext: string;
     articlespage_link : string;
@@ -24,7 +25,8 @@ export const content: Record<Language, ReviewsPageContent> = {
         show_rating: "(Näytä arvosana)",
 
         rating: "Arvosana:",
-        likes: "tykkäystä",
+        likes: "Tykkäystä",
+        likes_singular: "Tykkäys",
 
         reviewspage_link: "/arviot",
         reviewspage_linktext: "Takaisin arviolistaan",
@@ -41,7 +43,8 @@ export const content: Record<Language, ReviewsPageContent> = {
         show_rating: "(Show rating)",
 
         rating:"Rating:",
-        likes:"likes",
+        likes: "Likes",
+        likes_singular: "Like",
 
         reviewspage_link: "/reviews",
         reviewspage_linktext: "Back to reviews list",

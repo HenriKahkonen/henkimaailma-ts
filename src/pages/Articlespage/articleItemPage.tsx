@@ -17,9 +17,8 @@ import { trackPageView } from "../../assets/trackPageView.tsx";
 /*import articleSvg from "../../assets/svg/article-reader.svg"*/
 /*import externalLinkSvg from "../../assets/svg/linkhub.svg"*/
 import warningSvg from "../../assets/svg/symbol-exclamation-mark.svg"
-/*import heart_unclicked from "../../assets/svg/heart.svg"*/
-/*import heart_clicked from "../../assets/svg/heart_full.svg"*/
 import Error404page from "../Errorpages/Error404page.tsx";
+import LikeButton from "../../assets/likeButton.tsx";
 
 function ArticlePage({articletype}: {articletype: ArticleType}) {
     const { language } = useLanguage();
@@ -122,10 +121,18 @@ function renderArticlePage({data, language}:ArticlePageRenderingProps) {
                         {body_markdown}
                     </ReactMarkdown>
 
-                    {/*<div className="article-page-likes-box">
-                            <img src={heart_unclicked} />
-                            {data.likes} {text.likes}
-                    </div>*/}
+                    <div className="article-page-footer">
+                        <div><i>{data.title}</i></div>
+                        <LikeButton 
+                            cssClass="article-page-likes-box"
+                            content_type="article"
+                            slug={data.slug}
+                            initialLikes={data.likes}
+                            likes_text={text.likes}
+                            likes_text_singular={text.likes_singular}
+                        />
+                    </div>
+
                 </div>
 
 
