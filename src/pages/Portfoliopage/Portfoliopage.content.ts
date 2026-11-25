@@ -127,8 +127,8 @@ export const static_content: PortfolioPageContent = {
                         { fi: "Typescript, React, Vite, Docker, Python, Django, PostgreSQL", en: "Typescript, React, Vite, Docker, Python, Django, PostgreSQL" },
                         { fi: "Hostaus: Google Cloud, Netlify", en: "Hosting: Google Cloud, Netlify" },
                         {
-                            fi: "Tekoälytyökalut: Claudea käytetty apuna arkkitehtuurin suunnittelemiseen ja hankalampien konseptien selittämiseen",
-                            en: "AI tools: Claude has been used to help design the architecture and to explain more difficult concepts",
+                            fi: "Tekoälytyökalut: Claude (selain)",
+                            en: "AI tools: Claude (Browser)",
                         },
                     ],
                 },
@@ -209,7 +209,7 @@ export const static_content: PortfolioPageContent = {
                 // 5) Gameplay footage reporter
                 {
                     title: { fi: "Gameplay footage -raportoija", en: "Gameplay footage reporter" },
-                    timeframe: { year: 2025, month: 10 },
+                    timeframe: { year: 2025, month: 10, endYear: 2026, endMonth: 11 },
                     links: [
                         {
                             name: {all: "GitHub"},
@@ -234,12 +234,13 @@ export const static_content: PortfolioPageContent = {
                             en: "Report helps cut down unnecessary material while still retaining material to use if I want to refer to a any game in the future. File size to video length- ratio helps identify footage that can be re-encoded to fit in a smaller file size without losing video quality (modern games need more storage space than NES games)",
                         },
                         {
-                            fi: "Datasta luodaan raakaa HTML:ää käyttävä sivu, jolla dataa voi järjestellä ja lukea",
-                            en: "From data is generated a raw HTML page where the data can be browsed and reordered",
+                            fi: "Uudelleenkirjoitettu 2026 käyttämään myös SQLiteä ja tukemaan myös Obsidian-tietokantaa, johon voi kirjoittaa laajempaa metadataa peleistä.",
+                            en: "Rewritten in 2026 to support SQLite and an Obsidian notes database where additional metadata about the games can be written.",
                         },
                     ],
                     tools: [
                         { fi: "Python", en: "Python" },
+                        { fi: "Tekoälytyökalut: Claude (selain)", en: "AI tools: Claude (browser)"},
                     ],
                 },
                 // 6) 3D liukuhihnat GZDoom
